@@ -23,16 +23,10 @@
  */
 
 using System;
-using System.Runtime.InteropServices;
-
-using FLOAT = System.Single;
-using UINT = System.UInt32;
-using UINT32 = System.UInt32;
-using HWND = System.IntPtr;
-using HANDLE = System.IntPtr;
-using HRESULT = System.Int64;
-using BOOL = System.Int32;
 using System.Numerics;
+using System.Runtime.InteropServices;
+using FLOAT = System.Single;
+using HANDLE = System.IntPtr;
 
 namespace unvell.D2DLib
 {
