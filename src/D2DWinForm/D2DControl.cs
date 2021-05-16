@@ -23,11 +23,10 @@
 */
 
 using System;
-using System.Windows.Forms;
 
 namespace unvell.D2DLib.WinForm
 {
-	public class D2DControl : System.Windows.Forms.Control
+    public class D2DControl : System.Windows.Forms.Control
 	{
 		private D2DDevice device;
 
