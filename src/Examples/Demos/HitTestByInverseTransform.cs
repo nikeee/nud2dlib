@@ -177,12 +177,12 @@ namespace unvell.D2DLib.Examples.Demos
     {
       D2DMatrix3x2 d2dmat;
 
-      d2dmat.a1 = mat.M11;
-      d2dmat.b1 = mat.M12;
-      d2dmat.a2 = mat.M21;
-      d2dmat.b2 = mat.M22;
-      d2dmat.a3 = mat.M31;
-      d2dmat.b3 = mat.M32;
+      d2dmat.A1 = mat.M11;
+      d2dmat.B1 = mat.M12;
+      d2dmat.A2 = mat.M21;
+      d2dmat.B2 = mat.M22;
+      d2dmat.A3 = mat.M31;
+      d2dmat.B3 = mat.M32;
 
       return d2dmat;
     }

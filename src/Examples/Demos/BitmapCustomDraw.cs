@@ -173,7 +173,7 @@ namespace unvell.D2DLib.Examples.Demos
 					r.step += r.speed;
 				}
 
-				r.color.a = 1 - Math.Abs(1 - r.step);
+				r.color.A = 1 - Math.Abs(1 - r.step);
 			}
 
 			this.SceneChanged = true;

@@ -41,8 +41,8 @@ namespace unvell.D2DLib
   {
     public D2DSize Size { get; private set; }
 
-    public FLOAT Height { get { return this.Size.height; } }
-    public FLOAT Width { get { return this.Size.width; } }
+    public FLOAT Height { get { return this.Size.Height; } }
+    public FLOAT Width { get { return this.Size.Width; } }
 
     internal D2DBitmap(HANDLE handle)
       : base(handle)

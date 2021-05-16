@@ -120,8 +120,8 @@ namespace unvell.D2DLib
 			FLOAT weight = 1, D2DDashStyle dashStyle = D2DDashStyle.Solid)
 		{
 			var ellipse = new D2DEllipse(x, y, width / 2f, height / 2f);
-			ellipse.origin.X += ellipse.radiusX;
-			ellipse.origin.Y += ellipse.radiusY;
+			ellipse.Origin.X += ellipse.RadiusX;
+			ellipse.Origin.Y += ellipse.RadiusY;
 
 			this.DrawEllipse(ellipse, color, weight, dashStyle);
 		}
@@ -154,8 +154,8 @@ namespace unvell.D2DLib
 		public void FillEllipse(Vector2 p, FLOAT w, FLOAT h, D2DColor color)
 		{
 			D2DEllipse ellipse = new D2DEllipse(p, w / 2, h / 2);
-			ellipse.origin.X += ellipse.radiusX;
-			ellipse.origin.Y += ellipse.radiusY;
+			ellipse.Origin.X += ellipse.RadiusX;
+			ellipse.Origin.Y += ellipse.RadiusY;
 
 			this.FillEllipse(ellipse, color);
 		}

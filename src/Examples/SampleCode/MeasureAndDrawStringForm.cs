@@ -48,7 +48,7 @@ namespace unvell.D2DLib.Examples.SampleCode
 
       var measuredSize = g.MeasureText(text, font1.Name, font1.Size, rect.Size);
 
-      var measuredRect = new D2DRect(rect.X, rect.Y, measuredSize.width, measuredSize.height);
+      var measuredRect = new D2DRect(rect.X, rect.Y, measuredSize.Width, measuredSize.Height);
 
       g.DrawText(text, D2DColor.Black, font1.Name, font1.Size, rect);
 

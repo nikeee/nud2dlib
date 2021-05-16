@@ -229,7 +229,7 @@ namespace unvell.D2DLib.Examples.Demos
 				}
 				else
 				{
-					ellipse.origin = new Vector2(x, y);
+					ellipse.Origin = new Vector2(x, y);
 					memg.FillEllipse(ellipse, this.penColor);
 				}
 			}

@@ -19,7 +19,7 @@ namespace unvell.D2DLib
 
 		public static D2DColor Clamp(D2DColor c)
 		{
-			return new D2DColor(Clamp(c.a), Clamp(c.r), Clamp(c.g), Clamp(c.b));
+			return new D2DColor(Clamp(c.A), Clamp(c.R), Clamp(c.G), Clamp(c.B));
 		}
 	}
 }

@@ -107,7 +107,7 @@ namespace unvell.D2DLib.Examples.Demos
 				{
 					ellipse.X = s.x;
 					ellipse.Y = s.y;
-					ellipse.radiusX = ellipse.radiusY = s.size;
+					ellipse.RadiusX = ellipse.RadiusY = s.size;
 					brush.Color = s.color;
 
 					g.FillEllipse(ellipse, brush);

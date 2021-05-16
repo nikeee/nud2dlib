@@ -123,17 +123,17 @@ namespace unvell.D2DLib
 		{
 			var path = this.CreatePathGeometry();
 
-			var halfSize = new D2DSize(size.width * 0.5f, size.height * 0.5f);
+			var halfSize = new D2DSize(size.Width * 0.5f, size.Height * 0.5f);
 
 			var sangle = startAngle * Math.PI / 180f;
 			var eangle = endAngle * Math.PI / 180f;
 			var angleDiff = endAngle - startAngle;
 
-			var startPoint = new Vector2((float)(origin.X + halfSize.width * Math.Cos(sangle)),
-				(float)(origin.Y + halfSize.height * Math.Sin(sangle)));
+			var startPoint = new Vector2((float)(origin.X + halfSize.Width * Math.Cos(sangle)),
+				(float)(origin.Y + halfSize.Height * Math.Sin(sangle)));
 
-			var endPoint = new Vector2((float)(origin.X + halfSize.width * Math.Cos(eangle)),
-				(float)(origin.Y + halfSize.height * Math.Sin(eangle)));
+			var endPoint = new Vector2((float)(origin.X + halfSize.Width * Math.Cos(eangle)),
+				(float)(origin.Y + halfSize.Height * Math.Sin(eangle)));
 
 			path.AddLines(new Vector2[] { origin, startPoint });
 
