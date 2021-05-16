@@ -7,9 +7,9 @@ root = true
 end_of_line = lf
 
 # Don't use tabs for indentation.
-[*.cs]
+[*.{cs,cpp,hpp,h}]
 indent_style = tabs
-indent_size = 2
+indent_size = 4
 insert_final_newline = true
 charset = utf
 end_of_line = lf
