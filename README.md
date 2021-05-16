@@ -1,5 +1,5 @@
 ![NuGet](https://img.shields.io/nuget/v/nud2dlib.svg)
-# d2dlib
+# nud2dlib
 
 This library is a fork of [jingwood's d2dlib](https://github.com/jingwood/d2dlib).
 Main difference: This library supports only .NET 5 (d2dlib supports .NET FW and .NET Standard 2.1) and uses the types from `System.Numerics.*` where appropriate (for example, `Vector2` and `Matrix3x2`). We do this because they are easier to work with and come with intrinsic JIT support (and thus, hardware acceleration).

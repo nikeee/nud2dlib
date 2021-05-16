@@ -6,7 +6,6 @@
     <TargetFramework>net5.0-windows</TargetFramework>
     <RootNamespace>nud2dlib</RootNamespace>
     <AssemblyName>d2dlibexport</AssemblyName>
-    <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>

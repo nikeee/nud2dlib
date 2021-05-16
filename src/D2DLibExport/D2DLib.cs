@@ -37,17 +37,17 @@ namespace nud2dlib
 #if DEBUG
 
 #if X86
-		const string DLL_NAME = "d2dlib32d.dll";
+		const string DLL_NAME = "nud2dlib32d.dll";
 #elif X64
-        const string DLL_NAME = "d2dlib64d.dll";
+        const string DLL_NAME = "nud2dlib64d.dll";
 #endif
 
 #else // Release
 
 #if X86
-		const string DLL_NAME = "d2dlib32.dll";
+		const string DLL_NAME = "nud2dlib32.dll";
 #elif X64
-		const string DLL_NAME = "d2dlib64.dll";
+		const string DLL_NAME = "nud2dlib64.dll";
 #endif
 
 #endif

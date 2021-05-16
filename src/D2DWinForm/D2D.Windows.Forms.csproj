@@ -8,7 +8,6 @@
     <RootNamespace>nud2dlib.Windows.Forms</RootNamespace>
     <AssemblyName>d2dwinform</AssemblyName>
     <UseWindowsForms>true</UseWindowsForms>
-    <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
   <!-- Package properties -->
