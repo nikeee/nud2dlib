@@ -377,24 +377,4 @@ namespace unvell.D2DLib
         }
     }
     #endregion
-
-    #region Matrix
-
-    [Serializable]
-    [StructLayout(LayoutKind.Sequential)]
-    public struct D2DMatrix3x2
-    {
-        public FLOAT A1, B1;
-        public FLOAT A2, B2;
-        public FLOAT A3, B3;
-
-        public D2DMatrix3x2(float a1, float b1, float a2, float b2, float a3, float b3)
-        {
-            A1 = a1; B1 = b1;
-            A2 = a2; B2 = b2;
-            A3 = a3; B3 = b3;
-        }
-    }
-
-    #endregion
 }

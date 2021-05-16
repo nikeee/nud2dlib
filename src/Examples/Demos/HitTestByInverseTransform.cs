@@ -35,10 +35,10 @@ namespace unvell.D2DLib.Examples.Demos
 	{
     float angle = -10;
     float scale = 1.0f;
-    System.Numerics.Vector2 pos = new System.Numerics.Vector2(300, 300);
+    Vector2 pos = new Vector2(300, 300);
 
-    Matrix3x2 mat = new Matrix3x2();
-    Matrix3x2 matInv;
+        Matrix3x2 mat = new Matrix3x2();
+        Matrix3x2 matInv;
 
     Rect2D rect = new Rect2D(0, 0, 400, 100);
 		bool isHitted = false;
@@ -53,15 +53,15 @@ namespace unvell.D2DLib.Examples.Demos
 
     void UpdateTransform()
     {
-      // set the transform
-      mat = Matrix3x2.Identity;
-      mat *= Matrix3x2.CreateTranslation(-rect.Width * 0.5f, -rect.Height * 0.5f);
-      mat *= Matrix3x2.CreateScale(this.scale, this.scale);
-      mat *= Matrix3x2.CreateRotation((float)(Math.PI * this.angle / 180f));
-      mat *= Matrix3x2.CreateTranslation(pos.X, pos.Y);
+            // set the transform
+            mat = Matrix3x2.Identity;
+            mat *= Matrix3x2.CreateTranslation(-rect.Width * 0.5f, -rect.Height * 0.5f);
+            mat *= Matrix3x2.CreateScale(this.scale, this.scale);
+            mat *= Matrix3x2.CreateRotation((float)(Math.PI * this.angle / 180f));
+            mat *= Matrix3x2.CreateTranslation(pos.X, pos.Y);
 
-      // get the inversed matrix
-      Matrix3x2.Invert(mat, out matInv);
+            // get the inversed matrix
+            System.Numerics.Matrix3x2.Invert(mat, out matInv);
     }
 
 		protected override void OnRender(D2DGraphics g)
@@ -69,12 +69,12 @@ namespace unvell.D2DLib.Examples.Demos
 			base.OnRender(g);
 
       // set the transform before draw rect
-      g.SetTransform(mat.toD2DMatrix3x2());
+      g.SetTransform(mat);
 
       g.FillRectangle(rect, isHitted ? D2DColor.LightYellow : D2DColor.LightGray);
 			g.DrawRectangle(rect, isHitted ? D2DColor.Red : D2DColor.Blue, 2);
 
-      g.DrawText("Drag to move / Click to rotate / Scroll to scale", D2DColor.Black, this.Font.Name, 14, rect, 
+      g.DrawText("Drag to move / Click to rotate / Scroll to scale", D2DColor.Black, this.Font.Name, 14, rect,
         DWriteTextAlignment.Center, DWriteParagraphAlignment.Center);
 
       g.ResetTransform();
@@ -170,21 +170,4 @@ namespace unvell.D2DLib.Examples.Demos
     }
   }
   #endregion /* Rect2D */
-
-  public static class NumericExtension
-  {
-    public static D2DMatrix3x2 toD2DMatrix3x2(this Matrix3x2 mat)
-    {
-      D2DMatrix3x2 d2dmat;
-
-      d2dmat.A1 = mat.M11;
-      d2dmat.B1 = mat.M12;
-      d2dmat.A2 = mat.M21;
-      d2dmat.B2 = mat.M22;
-      d2dmat.A3 = mat.M31;
-      d2dmat.B3 = mat.M32;
-
-      return d2dmat;
-    }
-  }
 }
