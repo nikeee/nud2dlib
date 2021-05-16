@@ -26,7 +26,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
-using unvell.D2DLib.WinForm;
+using unvell.D2DLib.Windows.Forms;
 
 namespace unvell.D2DLib.Examples.SampleCode
 {
@@ -41,7 +41,7 @@ namespace unvell.D2DLib.Examples.SampleCode
 		{
 			g.DrawText("Flat", D2DColor.DimGray, "Arials", 20, 110, 83);
 			g.DrawLine(300, 100, 600, 100, D2DColor.Black, 20, D2DDashStyle.Solid, D2DCapStyle.Flat, D2DCapStyle.Flat);
-  
+
 			g.DrawText("Round", D2DColor.DimGray, "Arials", 20, 110, 183);
 			g.DrawLine(300, 200, 600, 200, D2DColor.Black, 20, D2DDashStyle.Solid, D2DCapStyle.Round, D2DCapStyle.Round);
 

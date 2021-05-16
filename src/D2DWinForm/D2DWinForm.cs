@@ -25,7 +25,7 @@
 using System;
 using System.Windows.Forms;
 
-namespace unvell.D2DLib.WinForm
+namespace unvell.D2DLib.Windows.Forms
 {
     public class D2DForm : Form
     {

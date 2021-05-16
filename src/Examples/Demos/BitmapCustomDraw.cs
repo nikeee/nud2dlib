@@ -26,7 +26,7 @@ using System;
 using System.Drawing;
 using System.Numerics;
 using System.Windows.Forms;
-using unvell.D2DLib.WinForm;
+using unvell.D2DLib.Windows.Forms;
 
 namespace unvell.D2DLib.Examples.Demos
 {

@@ -25,7 +25,7 @@
 using System;
 using System.Drawing;
 
-namespace unvell.D2DLib.WinForm
+namespace unvell.D2DLib.Windows.Forms
 {
     public static class D2DWinFormExtensions
     {

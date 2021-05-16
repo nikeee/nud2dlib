@@ -11,7 +11,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\D2DLibExport\D2DLibExport.csproj" IncludeAssets="contentFiles" />
-    <ProjectReference Include="..\D2DWinForm\D2DWinForm.csproj" IncludeAssets="contentFiles" />
+    <ProjectReference Include="..\D2DWinForm\D2D.Windows.Forms.csproj" IncludeAssets="contentFiles" />
   </ItemGroup>
 
   <ItemGroup>

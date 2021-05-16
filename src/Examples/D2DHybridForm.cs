@@ -1,18 +1,18 @@
 ﻿/*
  * MIT License
- * 
+ *
  * Copyright (c) 2009-2021 Jingwood, unvell.com. All right reserved.
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in all
  * copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -26,7 +26,7 @@ using System;
 using System.Drawing;
 using System.Numerics;
 using System.Windows.Forms;
-using unvell.D2DLib.WinForm;
+using unvell.D2DLib.Windows.Forms;
 
 namespace unvell.D2DLib.Examples
 {
@@ -154,7 +154,7 @@ namespace unvell.D2DLib.Examples
 		/// <param name="ag">Graphics context supports both GDI+ and Direct2D rendering.</param>
 		protected virtual void OnDraw(IHybridGraphics ag)
 		{
-			ag.DrawString("Hello World", Font, Color.Black, 
+			ag.DrawString("Hello World", Font, Color.Black,
 				this.ClientRectangle.Width / 2 - 30, this.ClientRectangle.Height / 2 - 20);
 		}
 
@@ -567,7 +567,7 @@ namespace unvell.D2DLib.Examples
 		{
 		}
 
-	
+
 	}
 
 	interface IHybridGraphics

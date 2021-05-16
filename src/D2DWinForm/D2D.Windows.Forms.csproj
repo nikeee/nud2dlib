@@ -5,7 +5,7 @@
   <!-- Build properties -->
   <PropertyGroup>
     <TargetFramework>net5.0-windows</TargetFramework>
-    <RootNamespace>unvell.D2DLib.WinForm</RootNamespace>
+    <RootNamespace>unvell.D2DLib.Windows.Forms</RootNamespace>
     <AssemblyName>d2dwinform</AssemblyName>
     <UseWindowsForms>true</UseWindowsForms>
     <LangVersion>latest</LangVersion>

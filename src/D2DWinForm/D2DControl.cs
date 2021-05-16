@@ -24,7 +24,7 @@
 
 using System;
 
-namespace unvell.D2DLib.WinForm
+namespace unvell.D2DLib.Windows.Forms
 {
     public class D2DControl : System.Windows.Forms.Control
 	{
@@ -55,7 +55,7 @@ namespace unvell.D2DLib.WinForm
 			base.CreateHandle();
 
 			this.DoubleBuffered = false;
-		
+
 			if (this.device == null)
 			{
 				this.device = D2DDevice.FromHwnd(this.Handle);
@@ -97,7 +97,7 @@ namespace unvell.D2DLib.WinForm
 			}
 
 			OnRender(this.graphics);
-			
+
 			if (ShowFPS)
 			{
 				if (this.lastFpsUpdate.Second != DateTime.Now.Second)
@@ -134,10 +134,10 @@ namespace unvell.D2DLib.WinForm
 				//	base.WndProc(ref m);
 				//	break;
 
-				case (int)unvell.D2DLib.WinForm.Win32.WMessages.WM_ERASEBKGND:
+				case (int)Win32.WMessages.WM_ERASEBKGND:
 					break;
 
-				case (int)unvell.D2DLib.WinForm.Win32.WMessages.WM_SIZE:
+				case (int)Win32.WMessages.WM_SIZE:
 					base.WndProc(ref m);
 					if (this.device != null) this.device.Resize();
 					break;

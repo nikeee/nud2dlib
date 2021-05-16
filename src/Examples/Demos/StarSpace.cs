@@ -27,7 +27,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 
-using unvell.D2DLib.WinForm;
+using unvell.D2DLib.Windows.Forms;
 
 namespace unvell.D2DLib.Examples.Demos
 {
@@ -48,7 +48,7 @@ namespace unvell.D2DLib.Examples.Demos
 			ShowFPS = true;
 			AnimationDraw = true;
 
-			// create a device brush in advance rather than pass color 
+			// create a device brush in advance rather than pass color
 			// during render to get better performance
 			brush = Device.CreateSolidColorBrush(D2DColor.Silver);
 
