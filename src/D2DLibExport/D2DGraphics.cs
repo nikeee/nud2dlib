@@ -34,6 +34,7 @@ using HWND = System.IntPtr;
 using HANDLE = System.IntPtr;
 using HRESULT = System.Int64;
 using BOOL = System.Int32;
+using System.Numerics;
 
 namespace unvell.D2DLib
 {
@@ -100,17 +101,17 @@ namespace unvell.D2DLib
 			FLOAT weight = 1, D2DDashStyle dashStyle = D2DDashStyle.Solid,
 			D2DCapStyle startCap = D2DCapStyle.Flat, D2DCapStyle endCap = D2DCapStyle.Flat)
 		{
-			DrawLine(new D2DPoint(x1, y1), new D2DPoint(x2, y2), color, weight, dashStyle, startCap, endCap);
+			DrawLine(new Vector2(x1, y1), new Vector2(x2, y2), color, weight, dashStyle, startCap, endCap);
 		}
 
-		public void DrawLine(D2DPoint start, D2DPoint end, D2DColor color,
+		public void DrawLine(Vector2 start, Vector2 end, D2DColor color,
 			FLOAT weight = 1, D2DDashStyle dashStyle = D2DDashStyle.Solid,
 			D2DCapStyle startCap = D2DCapStyle.Flat, D2DCapStyle endCap = D2DCapStyle.Flat)
 		{
 			D2D.DrawLine(this.Handle, start, end, color, weight, dashStyle, startCap, endCap);
 		}
 
-		public void DrawLines(D2DPoint[] points, D2DColor color, FLOAT weight = 1, D2DDashStyle dashStyle = D2DDashStyle.Solid)
+		public void DrawLines(Vector2[] points, D2DColor color, FLOAT weight = 1, D2DDashStyle dashStyle = D2DDashStyle.Solid)
 		{
 			D2D.DrawLines(this.Handle, points, (uint)points.Length, color, weight, dashStyle);
 		}
@@ -119,20 +120,20 @@ namespace unvell.D2DLib
 			FLOAT weight = 1, D2DDashStyle dashStyle = D2DDashStyle.Solid)
 		{
 			var ellipse = new D2DEllipse(x, y, width / 2f, height / 2f);
-			ellipse.origin.x += ellipse.radiusX;
-			ellipse.origin.y += ellipse.radiusY;
+			ellipse.origin.X += ellipse.radiusX;
+			ellipse.origin.Y += ellipse.radiusY;
 
 			this.DrawEllipse(ellipse, color, weight, dashStyle);
 		}
 
-		public void DrawEllipse(D2DPoint origin, D2DSize radial, D2DColor color,
+		public void DrawEllipse(Vector2 origin, D2DSize radial, D2DColor color,
 			FLOAT weight = 1, D2DDashStyle dashStyle = D2DDashStyle.Solid)
 		{
 			var ellipse = new D2DEllipse(origin, radial);
 			this.DrawEllipse(ellipse, color, weight, dashStyle);
 		}
 
-		public void DrawEllipse(D2DPoint origin, FLOAT radialX, FLOAT radialY, D2DColor color,
+		public void DrawEllipse(Vector2 origin, FLOAT radialX, FLOAT radialY, D2DColor color,
 			FLOAT weight = 1, D2DDashStyle dashStyle = D2DDashStyle.Solid)
 		{
 			var ellipse = new D2DEllipse(origin, radialX, radialY);
@@ -145,28 +146,28 @@ namespace unvell.D2DLib
 			D2D.DrawEllipse(this.Handle, ref ellipse, color, weight, dashStyle);
 		}
 
-		public void FillEllipse(D2DPoint p, FLOAT radial, D2DColor color)
+		public void FillEllipse(Vector2 p, FLOAT radial, D2DColor color)
 		{
 			this.FillEllipse(p, radial, radial, color);
 		}
 
-		public void FillEllipse(D2DPoint p, FLOAT w, FLOAT h, D2DColor color)
+		public void FillEllipse(Vector2 p, FLOAT w, FLOAT h, D2DColor color)
 		{
 			D2DEllipse ellipse = new D2DEllipse(p, w / 2, h / 2);
-			ellipse.origin.x += ellipse.radiusX;
-			ellipse.origin.y += ellipse.radiusY;
+			ellipse.origin.X += ellipse.radiusX;
+			ellipse.origin.Y += ellipse.radiusY;
 
 			this.FillEllipse(ellipse, color);
 		}
 
 		public void FillEllipse(FLOAT x, FLOAT y, FLOAT radial, D2DColor color)
 		{
-			this.FillEllipse(new D2DPoint(x, y), radial, radial, color);
+			this.FillEllipse(new Vector2(x, y), radial, radial, color);
 		}
 
 		public void FillEllipse(FLOAT x, FLOAT y, FLOAT w, FLOAT h, D2DColor color)
 		{
-			this.FillEllipse(new D2DPoint(x, y), w, h, color);
+			this.FillEllipse(new Vector2(x, y), w, h, color);
 		}
 
 		public void FillEllipse(D2DEllipse ellipse, D2DColor color)
@@ -186,32 +187,32 @@ namespace unvell.D2DLib
 			D2D.DrawBeziers(Handle, bezierSegments, (uint)bezierSegments.Length, strokeColor, strokeWidth, dashStyle);
 		}
 
-		public void DrawPolygon(D2DPoint[] points,
+		public void DrawPolygon(Vector2[] points,
 			D2DColor strokeColor, FLOAT strokeWidth = 1f, D2DDashStyle dashStyle = D2DDashStyle.Solid)
 		{
 			this.DrawPolygon(points, strokeColor, strokeWidth, dashStyle, D2DColor.Transparent);
 		}
 
-		public void DrawPolygon(D2DPoint[] points,
+		public void DrawPolygon(Vector2[] points,
 			D2DColor strokeColor, FLOAT strokeWidth, D2DDashStyle dashStyle, D2DColor fillColor)
 		{
 			D2D.DrawPolygon(Handle, points, (uint)points.Length, strokeColor, strokeWidth, dashStyle, fillColor);
 		}
 
-		public void DrawPolygon(D2DPoint[] points,
+		public void DrawPolygon(Vector2[] points,
 			D2DColor strokeColor, FLOAT strokeWidth, D2DDashStyle dashStyle, D2DBrush fillBrush)
 		{
 			D2D.DrawPolygonWithBrush(Handle, points, (uint)points.Length, strokeColor, strokeWidth, dashStyle, fillBrush.Handle);
 		}
 
     [Obsolete("FillPolygon will be removed from later versions. Use DrawPolygon instead")]
-    public void FillPolygon(D2DPoint[] points, D2DColor fillColor)
+    public void FillPolygon(Vector2[] points, D2DColor fillColor)
 		{
 			this.DrawPolygon(points, D2DColor.Transparent, 0, D2DDashStyle.Solid, fillColor);
 		}
 
     [Obsolete("FillPolygon will be removed from later versions. Use DrawPolygon instead")]
-    public void FillPolygon(D2DPoint[] points, D2DBrush brush)
+    public void FillPolygon(Vector2[] points, D2DBrush brush)
 		{
 			D2D.DrawPolygonWithBrush(this.Handle, points, (uint)points.Length, D2DColor.Transparent, 0, D2DDashStyle.Solid, brush.Handle);
 		}
@@ -289,7 +290,7 @@ namespace unvell.D2DLib
 			D2D.RotateTransform(this.Handle, angle);
 		}
 
-		public void RotateTransform(FLOAT angle, D2DPoint center)
+		public void RotateTransform(FLOAT angle, Vector2 center)
 		{
 			D2D.RotateTransform(this.Handle, angle, center);
 		}
@@ -299,12 +300,12 @@ namespace unvell.D2DLib
 			D2D.TranslateTransform(this.Handle, x, y);
 		}
 
-		public void ScaleTransform(FLOAT sx, FLOAT sy, [Optional] D2DPoint center)
+		public void ScaleTransform(FLOAT sx, FLOAT sy, [Optional] Vector2 center)
 		{
 			D2D.ScaleTransform(this.Handle, sx, sy, center);
 		}
 
-		public void SkewTransform(FLOAT angleX, FLOAT angleY, [Optional] D2DPoint center)
+		public void SkewTransform(FLOAT angleX, FLOAT angleY, [Optional] Vector2 center)
 		{
 			D2D.SkewTransform(this.Handle, angleX, angleY, center);
 		}
@@ -322,7 +323,7 @@ namespace unvell.D2DLib
 			D2D.DrawRectangle(this.Handle, ref rect, color, strokeWidth, dashStyle);
 		}
 
-		public void DrawRectangle(D2DPoint origin, D2DSize size, D2DColor color, FLOAT strokeWidth = 1,
+		public void DrawRectangle(Vector2 origin, D2DSize size, D2DColor color, FLOAT strokeWidth = 1,
 			D2DDashStyle dashStyle = D2DDashStyle.Solid)
 		{
 			this.DrawRectangle(new D2DRect(origin, size), color, strokeWidth, dashStyle);
@@ -339,7 +340,7 @@ namespace unvell.D2DLib
 			this.FillRectangle(rect, color);
 		}
 
-		public void FillRectangle(D2DPoint origin, D2DSize size, D2DColor color)
+		public void FillRectangle(Vector2 origin, D2DSize size, D2DColor color)
 		{
 			this.FillRectangle(new D2DRect(origin, size), color);
 		}

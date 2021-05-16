@@ -25,6 +25,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Numerics;
 using System.Windows.Forms;
 using unvell.D2DLib.WinForm;
 
@@ -47,7 +48,7 @@ namespace unvell.D2DLib.Examples.Demos
 			pies.Clear();
 
 			// define the figure origin and size
-			var figureOrigin = new D2DPoint(300, 300);
+			var figureOrigin = new Vector2(300, 300);
 			var figureSize = new D2DSize(300, 300);
 
 			var records = new float[] { .6f, .3f, .1f };

@@ -35,6 +35,7 @@ using HANDLE = System.IntPtr;
 using HRESULT = System.Int64;
 using BOOL = System.Int32;
 using System.Drawing.Drawing2D;
+using System.Numerics;
 
 namespace unvell.D2DLib
 {
@@ -127,13 +128,13 @@ namespace unvell.D2DLib
 		[DllImport(DLL_NAME, CallingConvention = CallingConvention.Cdecl)]
 		public static extern void RotateTransform([In] HANDLE context, [In] FLOAT angle);
 		[DllImport(DLL_NAME, CallingConvention = CallingConvention.Cdecl)]
-		public static extern void RotateTransform([In] HANDLE context, [In] FLOAT angle, [In] D2DPoint center);
+		public static extern void RotateTransform([In] HANDLE context, [In] FLOAT angle, [In] Vector2 center);
 		[DllImport(DLL_NAME, CallingConvention = CallingConvention.Cdecl)]
 		public static extern void TranslateTransform([In] HANDLE context, [In] FLOAT x, [In] FLOAT y);
 		[DllImport(DLL_NAME, CallingConvention = CallingConvention.Cdecl)]
-		public static extern void ScaleTransform([In] HANDLE context, [In] FLOAT sx, [In] FLOAT sy, [Optional] D2DPoint center);
+		public static extern void ScaleTransform([In] HANDLE context, [In] FLOAT sx, [In] FLOAT sy, [Optional] Vector2 center);
 		[DllImport(DLL_NAME, CallingConvention = CallingConvention.Cdecl)]
-		public static extern void SkewTransform([In] HANDLE ctx, [In] FLOAT angleX, [In] FLOAT angleY, [Optional] D2DPoint center);
+		public static extern void SkewTransform([In] HANDLE ctx, [In] FLOAT angleX, [In] FLOAT angleY, [Optional] Vector2 center);
 		[DllImport(DLL_NAME, CallingConvention = CallingConvention.Cdecl)]
 		public static extern void SetTransform([In] HANDLE context, [In] ref D2DMatrix3x2 mat);
 		[DllImport(DLL_NAME, CallingConvention = CallingConvention.Cdecl)]
@@ -149,12 +150,12 @@ namespace unvell.D2DLib
 		#region Simple Sharp
 
 		[DllImport(DLL_NAME, CallingConvention = CallingConvention.Cdecl)]
-		public static extern void DrawLine(HANDLE context, D2DPoint start, D2DPoint end, D2DColor color,
+		public static extern void DrawLine(HANDLE context, Vector2 start, Vector2 end, D2DColor color,
 			FLOAT weight = 1, D2DDashStyle dashStyle = D2DDashStyle.Solid,
 			D2DCapStyle startCap = D2DCapStyle.Flat, D2DCapStyle endCap = D2DCapStyle.Flat);
 
 		[DllImport(DLL_NAME, CallingConvention = CallingConvention.Cdecl)]
-		public static extern void DrawLines(HANDLE context, D2DPoint[] points, UINT count, D2DColor color,
+		public static extern void DrawLines(HANDLE context, Vector2[] points, UINT count, D2DColor color,
 			FLOAT weight = 1, D2DDashStyle dashStyle = D2DDashStyle.Solid);
 
 		[DllImport(DLL_NAME, CallingConvention = CallingConvention.Cdecl)]
@@ -229,22 +230,22 @@ namespace unvell.D2DLib
 			[In] HANDLE brushHandle, [Optional] HANDLE opacityBrushHandle);
 
 		[DllImport(DLL_NAME, CallingConvention = CallingConvention.Cdecl)]
-		public static extern void DrawPolygon(HANDLE ctx, D2DPoint[] points, UINT count,
+		public static extern void DrawPolygon(HANDLE ctx, Vector2[] points, UINT count,
 			D2DColor strokeColor, FLOAT strokeWidth, D2DDashStyle dashStyle, D2DColor fillColor);
 
 		[DllImport(DLL_NAME, CallingConvention = CallingConvention.Cdecl)]
-		public static extern void DrawPolygonWithBrush(HANDLE ctx, D2DPoint[] points, UINT count,
+		public static extern void DrawPolygonWithBrush(HANDLE ctx, Vector2[] points, UINT count,
 			D2DColor strokeColor, FLOAT strokeWidth, D2DDashStyle dashStyle, HANDLE brushHandler);
 
 		[DllImport(DLL_NAME, CallingConvention = CallingConvention.Cdecl)]
-		public static extern void SetPathStartPoint(HANDLE ctx, D2DPoint startPoint);
+		public static extern void SetPathStartPoint(HANDLE ctx, Vector2 startPoint);
 
 		[DllImport(DLL_NAME, CallingConvention = CallingConvention.Cdecl)]
 		public static extern void ClosePath(HANDLE ctx);
 
 		[DllImport(DLL_NAME, CallingConvention = CallingConvention.Cdecl)]
-		public static extern void AddPathLines(HANDLE path, D2DPoint[] points, uint count);
-		public static void AddPathLines(HANDLE path, D2DPoint[] points) { AddPathLines(path, points, (uint)points.Length); }
+		public static extern void AddPathLines(HANDLE path, Vector2[] points, uint count);
+		public static void AddPathLines(HANDLE path, Vector2[] points) { AddPathLines(path, points, (uint)points.Length); }
 
 		[DllImport(DLL_NAME, CallingConvention = CallingConvention.Cdecl)]
 		public static extern void AddPathBeziers(HANDLE ctx, D2DBezierSegment[] bezierSegments, uint count);
@@ -258,7 +259,7 @@ namespace unvell.D2DLib
 		public static extern void AddPathEllipse(HANDLE path, ref D2DEllipse ellipse);
 
 		[DllImport(DLL_NAME, CallingConvention = CallingConvention.Cdecl)]
-		public static extern void AddPathArc(HANDLE ctx, D2DPoint endPoint, D2DSize size, FLOAT sweepAngle,
+		public static extern void AddPathArc(HANDLE ctx, Vector2 endPoint, D2DSize size, FLOAT sweepAngle,
 			D2DArcSize arcSize = D2DArcSize.Small,
 			D2DSweepDirection sweepDirection = D2DSweepDirection.Clockwise);
 
@@ -281,10 +282,10 @@ namespace unvell.D2DLib
 		public static extern void FillGeometryWithBrush(HANDLE path, HANDLE brush);
 
 		[DllImport(DLL_NAME, CallingConvention = CallingConvention.Cdecl)]
-		public static extern bool PathFillContainsPoint(HANDLE pathCtx, D2DPoint point);
+		public static extern bool PathFillContainsPoint(HANDLE pathCtx, Vector2 point);
 
 		[DllImport(DLL_NAME, CallingConvention = CallingConvention.Cdecl)]
-		public static extern bool PathStrokeContainsPoint(HANDLE pathCtx, D2DPoint point, FLOAT strokeWidth = 1,
+		public static extern bool PathStrokeContainsPoint(HANDLE pathCtx, Vector2 point, FLOAT strokeWidth = 1,
 			D2DDashStyle dashStyle = D2DDashStyle.Solid);
 
 		[DllImport(DLL_NAME, CallingConvention = CallingConvention.Cdecl)]
@@ -313,11 +314,11 @@ namespace unvell.D2DLib
 		public static extern void SetSolidColorBrushColor(HANDLE brush, D2DColor color);
 
 		[DllImport(DLL_NAME, CallingConvention = CallingConvention.Cdecl)]
-		public static extern HANDLE CreateLinearGradientBrush(HANDLE ctx, D2DPoint startPoint, D2DPoint endPoint,
+		public static extern HANDLE CreateLinearGradientBrush(HANDLE ctx, Vector2 startPoint, Vector2 endPoint,
 																											D2DGradientStop[] gradientStops, UINT gradientStopCount);
 
 		[DllImport(DLL_NAME, CallingConvention = CallingConvention.Cdecl)]
-		public static extern HANDLE CreateRadialGradientBrush(HANDLE ctx, D2DPoint origin, D2DPoint offset,
+		public static extern HANDLE CreateRadialGradientBrush(HANDLE ctx, Vector2 origin, Vector2 offset,
 																													FLOAT radiusX, FLOAT radiusY, D2DGradientStop[] gradientStops,
 																													UINT gradientStopCount);
 

@@ -23,6 +23,7 @@
 */
 
 using System;
+using System.Numerics;
 using System.Runtime.InteropServices;
 
 using FLOAT = System.Single;
@@ -201,21 +202,21 @@ namespace unvell.D2DLib
 			this.bottom = top + height;
 		}
 
-		public D2DRect(D2DPoint origin, D2DSize size)
-			: this(origin.x - size.width * 0.5f, origin.y - size.height * 0.5f, size.width, size.height)
+		public D2DRect(Vector2 origin, D2DSize size)
+			: this(origin.X - size.width * 0.5f, origin.Y - size.height * 0.5f, size.width, size.height)
 		{ }
 
-		public D2DPoint Location
+		public Vector2 Location
 		{
-			get { return new D2DPoint(left, top); }
+			get { return new Vector2(left, top); }
 			set
 			{
 				FLOAT width = this.right - this.left;
 				FLOAT height = this.bottom - this.top;
-				this.left = value.x;
-				this.right = value.x + width;
-				this.top = value.y;
-				this.bottom = value.y + height;
+				this.left = value.X;
+				this.right = value.X + width;
+				this.top = value.Y;
+				this.bottom = value.Y + height;
 			}
 		}
 
@@ -309,14 +310,16 @@ namespace unvell.D2DLib
 	#endregion Rounded Rect
 
 	#region Point
+
+	/*
 	[Serializable]
 	[StructLayout(LayoutKind.Sequential)]
-	public struct D2DPoint
+	public struct Vector2
 	{
 		public FLOAT x;
 		public FLOAT y;
 
-		public D2DPoint(FLOAT x, FLOAT y)
+		public Vector2(FLOAT x, FLOAT y)
 		{
 			this.x = x;
 			this.y = y;
@@ -328,44 +331,44 @@ namespace unvell.D2DLib
 			this.y += offy;
 		}
 
-		public static readonly D2DPoint Zero = new D2DPoint(0, 0);
-		public static readonly D2DPoint One = new D2DPoint(1, 1);
+		public static readonly Vector2 Zero = new Vector2(0, 0);
+		public static readonly Vector2 One = new Vector2(1, 1);
 
 		public override bool Equals(object obj)
 		{
-			if (!(obj is D2DPoint)) return false;
+			if (!(obj is Vector2)) return false;
 
-			var p2 = (D2DPoint)obj;
+			var p2 = (Vector2)obj;
 
 			return x == p2.x && y == p2.y;
 		}
 
-		public static bool operator==(D2DPoint p1, D2DPoint p2)
+		public static bool operator==(Vector2 p1, Vector2 p2)
 		{
 			return p1.x == p2.x && p1.y == p2.y;
 		}
 
-		public static bool operator !=(D2DPoint p1, D2DPoint p2)
+		public static bool operator !=(Vector2 p1, Vector2 p2)
 		{
 			return p1.x != p2.x || p1.y != p2.y;
 		}
 
-		public static implicit operator D2DPoint(System.Drawing.Point p)
+		public static implicit operator Vector2(System.Drawing.Point p)
 		{
-			return new D2DPoint(p.X, p.Y);
+			return new Vector2(p.X, p.Y);
 		}
 
-		public static implicit operator D2DPoint(System.Drawing.PointF p)
+		public static implicit operator Vector2(System.Drawing.PointF p)
 		{
-			return new D2DPoint(p.X, p.Y);
+			return new Vector2(p.X, p.Y);
 		}
 
-		public static implicit operator System.Drawing.PointF(D2DPoint p)
+		public static implicit operator System.Drawing.PointF(Vector2 p)
 		{
 			return new System.Drawing.PointF(p.x, p.y);
 		}
 
-		public static explicit operator System.Drawing.Point(D2DPoint p)
+		public static explicit operator System.Drawing.Point(Vector2 p)
 		{
 			return System.Drawing.Point.Round(p);
 		}
@@ -375,6 +378,8 @@ namespace unvell.D2DLib
 			return (int)((this.x * 0xff) + this.y);
 		}
 	}
+	*/
+
 	#endregion
 
 	#region Size
@@ -425,11 +430,11 @@ namespace unvell.D2DLib
 	[StructLayout(LayoutKind.Sequential)]
 	public struct D2DEllipse
 	{
-		public D2DPoint origin;
+		public Vector2 origin;
 		public FLOAT radiusX;
 		public FLOAT radiusY;
 
-		public D2DEllipse(D2DPoint center, FLOAT radiusX, FLOAT radiusY)
+		public D2DEllipse(Vector2 center, FLOAT radiusX, FLOAT radiusY)
 		{
 			this.origin = center;
 			this.radiusX = radiusX;
@@ -437,18 +442,18 @@ namespace unvell.D2DLib
 		}
 
 
-		public D2DEllipse(D2DPoint center, D2DSize radius)
+		public D2DEllipse(Vector2 center, D2DSize radius)
 			: this(center, radius.width, radius.height)
 		{
 		}
 
 		public D2DEllipse(FLOAT x, FLOAT y, FLOAT rx, FLOAT ry)
-			: this(new D2DPoint(x, y), rx, ry)
+			: this(new Vector2(x, y), rx, ry)
 		{
 		}
 
-		public FLOAT X { get { return origin.x; } set { origin.x = value; } }
-		public FLOAT Y { get { return origin.y; } set { origin.y = value; } }
+		public FLOAT X { get { return origin.X; } set { origin.X = value; } }
+		public FLOAT Y { get { return origin.Y; } set { origin.Y = value; } }
 	}
 	#endregion
 
@@ -457,11 +462,11 @@ namespace unvell.D2DLib
 	[StructLayout(LayoutKind.Sequential)]
 	public struct D2DBezierSegment
 	{
-		public D2DPoint point1;
-		public D2DPoint point2;
-		public D2DPoint point3;
+		public Vector2 point1;
+		public Vector2 point2;
+		public Vector2 point3;
 
-		public D2DBezierSegment(D2DPoint point1, D2DPoint point2, D2DPoint point3)
+		public D2DBezierSegment(Vector2 point1, Vector2 point2, Vector2 point3)
 		{
 			this.point1 = point1;
 			this.point2 = point2;
@@ -470,9 +475,9 @@ namespace unvell.D2DLib
 
 		public D2DBezierSegment(FLOAT x1, FLOAT y1, FLOAT x2, FLOAT y2, FLOAT x3, FLOAT y3)
 		{
-			this.point1 = new D2DPoint(x1, y1);
-			this.point2 = new D2DPoint(x2, y2);
-			this.point3 = new D2DPoint(x3, y3);
+			this.point1 = new Vector2(x1, y1);
+			this.point2 = new Vector2(x2, y2);
+			this.point3 = new Vector2(x3, y3);
 		}
 	}
 	#endregion

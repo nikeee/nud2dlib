@@ -26,6 +26,7 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Numerics;
 
 using FLOAT = System.Single;
 using UINT = System.UInt32;
@@ -78,14 +79,13 @@ namespace unvell.D2DLib
 			return handle == HANDLE.Zero ? null : new D2DSolidColorBrush(handle, color);
 		}
 
-		public D2DLinearGradientBrush CreateLinearGradientBrush(D2DPoint startPoint, D2DPoint endPoint,
-																														D2DGradientStop[] gradientStops)
+		public D2DLinearGradientBrush CreateLinearGradientBrush(Vector2 startPoint, Vector2 endPoint, D2DGradientStop[] gradientStops)
 		{
 			HANDLE handle = D2D.CreateLinearGradientBrush(this.Handle, startPoint, endPoint, gradientStops, (uint)gradientStops.Length);
 			return new D2DLinearGradientBrush(handle, gradientStops);
 		}
 
-		public D2DRadialGradientBrush CreateRadialGradientBrush(D2DPoint origin, D2DPoint offset,
+		public D2DRadialGradientBrush CreateRadialGradientBrush(Vector2 origin, Vector2 offset,
 																														FLOAT radiusX, FLOAT radiusY,
 																														D2DGradientStop[] gradientStops)
 		{
@@ -113,13 +113,13 @@ namespace unvell.D2DLib
 			return new D2DPathGeometry(this.Handle, geoHandle);
 		}
 
-    public D2DGeometry CreateEllipseGeometry(D2DPoint origin, D2DSize size)
+    public D2DGeometry CreateEllipseGeometry(Vector2 origin, D2DSize size)
     {
       var ellipse = new D2DEllipse(origin, size);
       return new D2DGeometry(this.Handle, D2D.CreateEllipseGeometry(this.Handle, ref ellipse));
     }
 
-    public D2DGeometry CreatePieGeometry(D2DPoint origin, D2DSize size, float startAngle, float endAngle)
+    public D2DGeometry CreatePieGeometry(Vector2 origin, D2DSize size, float startAngle, float endAngle)
 		{
 			var path = this.CreatePathGeometry();
 
@@ -129,13 +129,13 @@ namespace unvell.D2DLib
 			var eangle = endAngle * Math.PI / 180f;
 			var angleDiff = endAngle - startAngle;
 
-			var startPoint = new D2DPoint((float)(origin.x + halfSize.width * Math.Cos(sangle)),
-				(float)(origin.y + halfSize.height * Math.Sin(sangle)));
+			var startPoint = new Vector2((float)(origin.X + halfSize.width * Math.Cos(sangle)),
+				(float)(origin.Y + halfSize.height * Math.Sin(sangle)));
 
-			var endPoint = new D2DPoint((float)(origin.x + halfSize.width * Math.Cos(eangle)),
-				(float)(origin.y + halfSize.height * Math.Sin(eangle)));
+			var endPoint = new Vector2((float)(origin.X + halfSize.width * Math.Cos(eangle)),
+				(float)(origin.Y + halfSize.height * Math.Sin(eangle)));
 
-			path.AddLines(new D2DPoint[] { origin, startPoint });
+			path.AddLines(new Vector2[] { origin, startPoint });
 
 			path.AddArc(endPoint, halfSize, angleDiff,
 				angleDiff > 180 ? D2DArcSize.Large : D2DArcSize.Small,

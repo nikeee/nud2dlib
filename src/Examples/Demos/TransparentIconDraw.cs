@@ -26,6 +26,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Windows.Forms;
 using unvell.D2DLib.WinForm;
@@ -80,7 +81,7 @@ namespace unvell.D2DLib.Examples.Demos
 		{
 			var size = this.ClientRectangle.Size;
 
-			using (var brush = this.Device.CreateLinearGradientBrush(new D2DPoint(0, 0), new D2DPoint(size.Width, -200),
+			using (var brush = this.Device.CreateLinearGradientBrush(new Vector2(0, 0), new Vector2(size.Width, -200),
 				new D2DGradientStop[] {
 					new D2DGradientStop(0, MathFunctions.Clamp(new D2DColor(1.0f-bgR, bgG, bgB))),
 					new D2DGradientStop(bgPos, MathFunctions.Clamp(new D2DColor(bgR, bgG, bgB))),

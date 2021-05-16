@@ -35,7 +35,7 @@ namespace unvell.D2DLib.Examples.Demos
 	{
     float angle = -10;
     float scale = 1.0f;
-    Vector2 pos = new Vector2(300, 300);
+    System.Numerics.Vector2 pos = new System.Numerics.Vector2(300, 300);
 
     Matrix3x2 mat = new Matrix3x2();
     Matrix3x2 matInv;
@@ -90,7 +90,7 @@ namespace unvell.D2DLib.Examples.Demos
       if (e.Button == MouseButtons.None)
       {
         // transformed point to the rect
-        var tp = Vector2.Transform(new Vector2(e.X, e.Y), matInv);
+        var tp = System.Numerics.Vector2.Transform(new System.Numerics.Vector2(e.X, e.Y), matInv);
 
         // calculate whether the point inside the rect
         isHitted = rect.ContainsPoint(new PointF(tp.X, tp.Y));

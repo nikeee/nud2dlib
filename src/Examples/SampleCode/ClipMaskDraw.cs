@@ -25,6 +25,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Numerics;
 using System.Windows.Forms;
 using unvell.D2DLib.WinForm;
 
@@ -46,7 +47,7 @@ namespace unvell.D2DLib.Examples.SampleCode
 		protected override void OnRender(D2DGraphics g)
     {
       using (var path = this.Device.CreateEllipseGeometry(
-        new D2DPoint((float)(340 + waveWidth * offsetX), 200), new D2DSize(130, 130)))
+        new Vector2((float)(340 + waveWidth * offsetX), 200), new D2DSize(130, 130)))
       {
         using (var layer = g.PushLayer(path))
         {

@@ -24,6 +24,7 @@
 
 using System;
 using System.Drawing;
+using System.Numerics;
 using System.Windows.Forms;
 using unvell.D2DLib.WinForm;
 
@@ -209,7 +210,7 @@ namespace unvell.D2DLib.Examples.Demos
 			var diff = new Point(currentPoint.X - this.lastPoint.X, currentPoint.Y - this.lastPoint.Y);
 
 			memg.BeginRender();
-			D2DEllipse ellipse = new D2DEllipse(D2DPoint.Zero, this.penSize);
+			D2DEllipse ellipse = new D2DEllipse(Vector2.Zero, this.penSize);
 			D2DRect rect = new D2DRect(0, 0, this.penSize.Width * 2, this.penSize.Height * 2);
 
 			float len = (float)Math.Sqrt(diff.X * diff.X + diff.Y * diff.Y);
@@ -228,7 +229,7 @@ namespace unvell.D2DLib.Examples.Demos
 				}
 				else
 				{
-					ellipse.origin = new D2DPoint(x, y);
+					ellipse.origin = new Vector2(x, y);
 					memg.FillEllipse(ellipse, this.penColor);
 				}
 			}
@@ -258,7 +259,7 @@ namespace unvell.D2DLib.Examples.Demos
 			else
 			{
 				// else draw pen
-				g.DrawEllipse(p, this.penSize, this.penColor, 2.0f);
+				g.DrawEllipse(new Vector2(p.X, p.Y), this.penSize, this.penColor, 2.0f);
 			}
 		}
 	}

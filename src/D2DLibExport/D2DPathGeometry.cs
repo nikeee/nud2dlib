@@ -34,6 +34,7 @@ using HWND = System.IntPtr;
 using HANDLE = System.IntPtr;
 using HRESULT = System.Int64;
 using BOOL = System.Int32;
+using System.Numerics;
 
 namespace unvell.D2DLib
 {
@@ -46,15 +47,15 @@ namespace unvell.D2DLib
 
     public void SetStartPoint(FLOAT x, FLOAT y)
     {
-      this.SetStartPoint(new D2DPoint(x, y));
+      this.SetStartPoint(new Vector2(x, y));
     }
 
-		public void SetStartPoint(D2DPoint startPoint)
+		public void SetStartPoint(Vector2 startPoint)
 		{
 			D2D.SetPathStartPoint(this.Handle, startPoint);
 		}
 
-		public void AddLines(D2DPoint[] points)
+		public void AddLines(Vector2[] points)
 		{
 			D2D.AddPathLines(this.Handle, points);
 		}
@@ -70,19 +71,19 @@ namespace unvell.D2DLib
     //	D2D.AddPathEllipse(this.Handle, ref ellipse);
     //}
 
-    public void AddArc(D2DPoint endPoint, D2DSize size, FLOAT sweepAngle,
+    public void AddArc(Vector2 endPoint, D2DSize size, FLOAT sweepAngle,
 			D2DArcSize arcSize = D2DArcSize.Small,
 			D2DSweepDirection sweepDirection = D2DSweepDirection.Clockwise)
 		{
 			D2D.AddPathArc(this.Handle, endPoint, size, sweepAngle, arcSize, sweepDirection);
 		}
 
-		public bool FillContainsPoint(D2DPoint point)
+		public bool FillContainsPoint(Vector2 point)
 		{
 			return D2D.PathFillContainsPoint(this.Handle, point);
 		}
 
-		public bool StrokeContainsPoint(D2DPoint point, FLOAT width = 1, D2DDashStyle dashStyle = D2DDashStyle.Solid)
+		public bool StrokeContainsPoint(Vector2 point, FLOAT width = 1, D2DDashStyle dashStyle = D2DDashStyle.Solid)
 		{
 			return D2D.PathStrokeContainsPoint(this.Handle, point, width, dashStyle);
 		}

@@ -23,6 +23,7 @@
  */
 
 using System;
+using System.Numerics;
 using System.Windows.Forms;
 using unvell.D2DLib.WinForm;
 
@@ -228,7 +229,7 @@ namespace unvell.D2DLib.Examples.Demos
 					{
 						// else when angle is specified, push a rotate matrix
 						g.PushTransform();
-						g.RotateTransform(s.angle, new D2DPoint(s.x + s.width * 0.5f, s.y + s.height * 0.5f));
+						g.RotateTransform(s.angle, new Vector2(s.x + s.width * 0.5f, s.y + s.height * 0.5f));
 						g.DrawBitmap(s.bmp, new D2DRect(s.x, s.y, s.width + 0.5f, s.height + 0.5f));
 						g.PopTransform();
 					}

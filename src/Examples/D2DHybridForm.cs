@@ -24,6 +24,7 @@
 
 using System;
 using System.Drawing;
+using System.Numerics;
 using System.Windows.Forms;
 using unvell.D2DLib.WinForm;
 
@@ -400,11 +401,11 @@ namespace unvell.D2DLib.Examples
 
 		public void DrawPolygon(PointF[] ps, Color strokeColor, float weight, Color fillColor)
 		{
-			D2DPoint[] pt = new D2DPoint[ps.Length];
+			Vector2[] pt = new Vector2[ps.Length];
 
 			for (int i = 0; i < ps.Length; i++)
 			{
-				pt[i] = new D2DPoint(ps[i].X, ps[i].Y);
+				pt[i] = new Vector2(ps[i].X, ps[i].Y);
 			}
 
 			this.g.DrawPolygon(pt, D2DColor.FromGDIColor(strokeColor), weight, D2DDashStyle.Solid, D2DColor.FromGDIColor(fillColor));
