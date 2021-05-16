@@ -153,83 +153,84 @@ namespace unvell.D2DLib
         public static readonly D2DColor HotPink = D2DColor.FromGDIColor(System.Drawing.Color.HotPink);
         public static readonly D2DColor LightPink = D2DColor.FromGDIColor(System.Drawing.Color.LightPink);
     }
+
     #endregion
 
     #region Rect
+
     [Serializable]
     [StructLayout(LayoutKind.Sequential)]
     public struct D2DRect
     {
-        public FLOAT left;
-        public FLOAT top;
-        public FLOAT right;
-        public FLOAT bottom;
-
-        public D2DRect(float left, float top, float width, float height)
-        {
-            this.left = left;
-            this.top = top;
-            this.right = left + width;
-            this.bottom = top + height;
-        }
+        public FLOAT Left;
+        public FLOAT Top;
+        public FLOAT Right;
+        public FLOAT Bottom;
 
         public D2DRect(Vector2 origin, D2DSize size)
             : this(origin.X - size.Width * 0.5f, origin.Y - size.Height * 0.5f, size.Width, size.Height)
         { }
+        public D2DRect(float left, float top, float width, float height)
+        {
+            Left = left;
+            Top = top;
+            Right = left + width;
+            Bottom = top + height;
+        }
 
         public Vector2 Location
         {
-            get { return new Vector2(left, top); }
+            get => new Vector2(Left, Top);
             set
             {
-                FLOAT width = this.right - this.left;
-                FLOAT height = this.bottom - this.top;
-                this.left = value.X;
-                this.right = value.X + width;
-                this.top = value.Y;
-                this.bottom = value.Y + height;
+                FLOAT width = Right - Left;
+                FLOAT height = Bottom - Top;
+                Left = value.X;
+                Right = value.X + width;
+                Top = value.Y;
+                Bottom = value.Y + height;
             }
         }
 
         public FLOAT Width
         {
-            get { return this.right - this.left; }
-            set { this.right = this.left + value; }
+            get => Right - Left;
+            set => Right = Left + value;
         }
 
         public FLOAT Height
         {
-            get { return this.bottom - this.top; }
-            set { this.bottom = this.top + value; }
+            get => Bottom - Top;
+            set => Bottom = Top + value;
         }
 
         public void Offset(FLOAT x, FLOAT y)
         {
-            this.left += x;
-            this.right += x;
-            this.top += y;
-            this.bottom += y;
+            Left += x;
+            Right += x;
+            Top += y;
+            Bottom += y;
         }
 
         public FLOAT X
         {
-            get => left;
+            get => Left;
             set
             {
-                FLOAT width = this.right - this.left;
-                this.left = value;
-                this.right = value + width;
+                FLOAT width = Right - Left;
+                Left = value;
+                Right = value + width;
             }
         }
 
         public FLOAT Y
         {
-            get => top;
+            get => Top;
             set
             {
-                FLOAT height = this.bottom - this.top;
-                this.top = value;
-                this.bottom = value + height;
+                FLOAT height = Bottom - Top;
+                Top = value;
+                Bottom = value + height;
             }
         }
 
@@ -248,7 +249,8 @@ namespace unvell.D2DLib
         public static implicit operator System.Drawing.RectangleF(D2DRect rect) => new System.Drawing.RectangleF(rect.X, rect.Y, rect.Width, rect.Height);
         public static explicit operator System.Drawing.Rectangle(D2DRect rect) => System.Drawing.Rectangle.Round(rect);
     }
-    #endregion Rect
+
+    #endregion
 
     #region Rounded Rect
 
@@ -256,13 +258,14 @@ namespace unvell.D2DLib
     [StructLayout(LayoutKind.Sequential)]
     public struct D2DRoundedRect
     {
-        public D2DRect rect;
-        public FLOAT radiusX;
-        public FLOAT radiusY;
+        public D2DRect Bounds;
+        public Vector2 Radius;
     }
-    #endregion Rounded Rect
+
+    #endregion
 
     #region Size
+
     [Serializable]
     [StructLayout(LayoutKind.Sequential)]
     public struct D2DSize
@@ -285,34 +288,41 @@ namespace unvell.D2DLib
 
         public override string ToString() => $"D2DSize({Width}, {Height})";
     }
-    #endregion Size
+
+    #endregion
 
     #region Ellipse
+
     [Serializable]
     [StructLayout(LayoutKind.Sequential)]
     public struct D2DEllipse
     {
         /// <summary> AKA center </summary>
         public Vector2 Origin;
-        public FLOAT RadiusX;
-        public FLOAT RadiusY;
+        public Vector2 Radius;
 
-        public D2DEllipse(Vector2 center, FLOAT radiusX, FLOAT radiusY)
+        public D2DEllipse(Vector2 center, Vector2 radius)
         {
             Origin = center;
-            RadiusX = radiusX;
-            RadiusY = radiusY;
+            Radius = radius;
         }
 
-        public D2DEllipse(Vector2 center, D2DSize radius) : this(center, radius.Width, radius.Height) { }
+        public D2DEllipse(FLOAT x, FLOAT y, FLOAT rx, FLOAT ry) : this(new Vector2(x, y), new Vector2(rx, ry)) { }
 
-        public D2DEllipse(FLOAT x, FLOAT y, FLOAT rx, FLOAT ry) : this(new Vector2(x, y), rx, ry) { }
+        public static D2DEllipse CreateCircle(Vector2 center, FLOAT radius) => new D2DEllipse(center, new Vector2(radius));
 
-        public static D2DEllipse CreateCircle(Vector2 center, FLOAT radius) => new D2DEllipse(center, radius, radius);
-
-        public FLOAT X { get { return Origin.X; } set { Origin.X = value; } }
-        public FLOAT Y { get { return Origin.Y; } set { Origin.Y = value; } }
+        public FLOAT X
+        {
+            get => Origin.X;
+            set => Origin.X = value;
+        }
+        public FLOAT Y
+        {
+            get => Origin.Y;
+            set => Origin.Y = value;
+        }
     }
+
     #endregion
 
     #region BezierSegment
