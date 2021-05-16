@@ -27,130 +27,103 @@ using System;
 namespace unvell.D2DLib.Windows.Forms
 {
     public class D2DControl : System.Windows.Forms.Control
-	{
-		private D2DDevice device;
+    {
+        private D2DDevice _device;
+        public D2DDevice Device => _device ??= D2DDevice.FromHwnd(Handle);
 
-		public D2DDevice Device
-		{
-			get
-			{
-				var hwnd = this.Handle;
-				if (this.device == null)
-				{
-					this.device = D2DDevice.FromHwnd(hwnd);
-				}
-				return this.device;
-			}
-		}
+        private D2DGraphics _graphics;
 
-		private D2DGraphics graphics;
+        private DateTime _lastFpsUpdate = DateTime.Now;
+        private int _frameCounter = 0;
+        private int lastFps = 0;
+        public bool DrawFps { get; set; }
 
-		private int currentFps = 0;
-		private int lastFps = 0;
-		public bool ShowFPS { get; set; }
-		private DateTime lastFpsUpdate = DateTime.Now;
+        protected override void CreateHandle()
+        {
+            base.CreateHandle();
 
-		protected override void CreateHandle()
-		{
-			base.CreateHandle();
+            DoubleBuffered = false;
+            _device ??= D2DDevice.FromHwnd(Handle);
+            _graphics = new D2DGraphics(_device);
+        }
 
-			this.DoubleBuffered = false;
+        private D2DBitmap _backgroundImage = null;
 
-			if (this.device == null)
-			{
-				this.device = D2DDevice.FromHwnd(this.Handle);
-			}
+        public new D2DBitmap BackgroundImage
+        {
+            get => _backgroundImage;
+            set
+            {
+                if (_backgroundImage == value)
+                    return;
+                _backgroundImage?.Dispose();
+                _backgroundImage = value;
+                Invalidate();
+            }
+        }
 
-			this.graphics = new D2DGraphics(this.device);
-		}
+        protected override void OnPaintBackground(System.Windows.Forms.PaintEventArgs e) { }
 
-		private D2DBitmap backgroundImage = null;
+        protected override void OnPaint(System.Windows.Forms.PaintEventArgs e)
+        {
+            if (_backgroundImage == null)
+                _graphics.BeginRender(D2DColor.FromGDIColor(BackColor));
+            else
+                _graphics.BeginRender(_backgroundImage);
 
-		public new D2DBitmap BackgroundImage
-		{
-			get { return this.backgroundImage; }
-			set
-			{
-				if (this.backgroundImage != value)
-				{
-					if (this.backgroundImage != null)
-					{
-						this.backgroundImage.Dispose();
-					}
-					this.backgroundImage = value;
-					Invalidate();
-				}
-			}
-		}
+            OnRender(_graphics);
 
-		protected override void OnPaintBackground(System.Windows.Forms.PaintEventArgs e) { }
+            if (DrawFps)
+                DrawAndCountFps();
 
-		protected override void OnPaint(System.Windows.Forms.PaintEventArgs e)
-		{
-			if (this.backgroundImage != null)
-			{
-				this.graphics.BeginRender(this.backgroundImage);
-			}
-			else
-			{
-				this.graphics.BeginRender(D2DColor.FromGDIColor(this.BackColor));
-			}
+            _graphics.EndRender();
+        }
 
-			OnRender(this.graphics);
+        private void DrawAndCountFps()
+        {
+            if (_lastFpsUpdate.Second != DateTime.Now.Second)
+            {
+                lastFps = _frameCounter;
+                _frameCounter = 0;
+            }
+            else
+            {
+                ++_frameCounter;
+            }
 
-			if (ShowFPS)
-			{
-				if (this.lastFpsUpdate.Second != DateTime.Now.Second)
-				{
-					this.lastFps = this.currentFps;
-					this.currentFps = 0;
-				}
-				else
-				{
-					this.currentFps++;
-				}
+            var info = $"{lastFps} fps";
+            var placeSize = new D2DSize(1000, 1000);
+            var size = _graphics.MeasureText(info, Font.Name, Font.Size, placeSize);
+            _graphics.DrawText(info, D2DColor.Black, ClientRectangle.Right - size.Width - 10, 5);
+        }
 
-				string info = string.Format("{0} fps", this.lastFps);
-				System.Drawing.SizeF size = e.Graphics.MeasureString(info, Font, Width);
-				e.Graphics.DrawString(info, Font, System.Drawing.Brushes.Black, ClientRectangle.Right - size.Width - 10, 5);
-			}
+        protected override void DestroyHandle()
+        {
+            base.DestroyHandle();
+            _device?.Dispose();
+        }
 
-			this.graphics.EndRender();
-		}
+        protected virtual void OnRender(D2DGraphics g) { }
 
-		protected override void DestroyHandle()
-		{
-			base.DestroyHandle();
-			this.device.Dispose();
-		}
+        protected override void WndProc(ref System.Windows.Forms.Message m)
+        {
+            switch (m.Msg)
+            {
+                //case (int)unvell.Common.Win32Lib.Win32.WMessages.WM_PAINT:
+                //	base.WndProc(ref m);
+                //	break;
+                case (int)Win32.WMessages.WM_ERASEBKGND:
+                    break;
+                case (int)Win32.WMessages.WM_SIZE:
+                    base.WndProc(ref m);
+                    _device?.Resize();
+                    break;
+                default:
+                    base.WndProc(ref m);
+                    break;
+            }
+        }
 
-		protected virtual void OnRender(D2DGraphics g) { }
-
-		protected override void WndProc(ref System.Windows.Forms.Message m)
-		{
-			switch (m.Msg)
-			{
-				//case (int)unvell.Common.Win32Lib.Win32.WMessages.WM_PAINT:
-				//	base.WndProc(ref m);
-				//	break;
-
-				case (int)Win32.WMessages.WM_ERASEBKGND:
-					break;
-
-				case (int)Win32.WMessages.WM_SIZE:
-					base.WndProc(ref m);
-					if (this.device != null) this.device.Resize();
-					break;
-
-				default:
-					base.WndProc(ref m);
-					break;
-			}
-		}
-
-		public new void Invalidate()
-		{
-			base.Invalidate(false);
-		}
-	}
+        public new void Invalidate() => base.Invalidate(false);
+    }
 }
