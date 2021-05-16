@@ -31,6 +31,7 @@ using FLOAT = System.Single;
 namespace unvell.D2DLib
 {
     #region Color
+
     [Serializable]
     [StructLayout(LayoutKind.Sequential)]
     public struct D2DColor
@@ -41,19 +42,14 @@ namespace unvell.D2DLib
         public FLOAT A;
 
         public D2DColor(FLOAT r, FLOAT g, FLOAT b) : this(1, r, g, b) { }
+        public D2DColor(FLOAT alpha, D2DColor color)
+            : this(alpha, color.R, color.G, color.B) { }
         public D2DColor(FLOAT a, FLOAT r, FLOAT g, FLOAT b)
         {
             A = a;
             R = r;
             G = g;
             B = b;
-        }
-        public D2DColor(FLOAT alpha, D2DColor color)
-        {
-            A = alpha;
-            R = color.R;
-            G = color.G;
-            B = color.B;
         }
 
         public static D2DColor operator *(D2DColor c, float s) => new D2DColor(c.A, c.R * s, c.G * s, c.B * s);
@@ -73,33 +69,17 @@ namespace unvell.D2DLib
             if (!(obj is D2DColor)) return false;
             var c2 = (D2DColor)obj;
 
-            return this.R == c2.R && this.G == c2.G && this.B == c2.B && this.A == c2.A;
+            return R == c2.R && G == c2.G && B == c2.B && A == c2.A;
         }
 
         public override int GetHashCode() => HashCode.Combine(R, G, B, A);
 
-        public static D2DColor FromGDIColor(System.Drawing.Color gdiColor)
-        {
-            return new D2DColor(gdiColor.A / 255f, gdiColor.R / 255f, gdiColor.G / 255f, gdiColor.B / 255f);
-        }
+        public static D2DColor FromGDIColor(System.Drawing.Color gdiColor) => new D2DColor(gdiColor.A / 255f, gdiColor.R / 255f, gdiColor.G / 255f, gdiColor.B / 255f);
 
         public static System.Drawing.Color ToGDIColor(D2DColor d2color)
         {
             var c = MathFunctions.Clamp(d2color * 255);
             return System.Drawing.Color.FromArgb((int)c.A, (int)c.R, (int)c.G, (int)c.B);
-        }
-
-        private static readonly Random rand = new Random();
-
-        /// <summary>
-        /// Create color by randomly color components.
-        /// </summary>
-        /// <returns></returns>
-        [Obsolete]
-        public static D2DColor Randomly()
-        {
-            return new D2DColor(1, (float)rand.NextDouble(), (float)rand.NextDouble(),
-                (float)rand.NextDouble());
         }
 
         public static readonly D2DColor Transparent = new D2DColor(0, 0, 0, 0);
@@ -233,7 +213,7 @@ namespace unvell.D2DLib
 
         public FLOAT X
         {
-            get { return this.left; }
+            get => left;
             set
             {
                 FLOAT width = this.right - this.left;
@@ -244,7 +224,7 @@ namespace unvell.D2DLib
 
         public FLOAT Y
         {
-            get { return this.top; }
+            get => top;
             set
             {
                 FLOAT height = this.bottom - this.top;
@@ -255,36 +235,18 @@ namespace unvell.D2DLib
 
         public D2DSize Size
         {
-            get
-            {
-                return new D2DSize(this.Width, this.Height);
-            }
+            get => new D2DSize(Width, Height);
             set
             {
-                this.Width = value.Width;
-                this.Height = value.Height;
+                Width = value.Width;
+                Height = value.Height;
             }
         }
 
-        public static implicit operator D2DRect(System.Drawing.Rectangle rect)
-        {
-            return new D2DRect(rect.X, rect.Y, rect.Width, rect.Height);
-        }
-
-        public static implicit operator D2DRect(System.Drawing.RectangleF rect)
-        {
-            return new D2DRect(rect.X, rect.Y, rect.Width, rect.Height);
-        }
-
-        public static implicit operator System.Drawing.RectangleF(D2DRect rect)
-        {
-            return new System.Drawing.RectangleF(rect.X, rect.Y, rect.Width, rect.Height);
-        }
-
-        public static explicit operator System.Drawing.Rectangle(D2DRect rect)
-        {
-            return System.Drawing.Rectangle.Round(rect);
-        }
+        public static implicit operator D2DRect(System.Drawing.Rectangle rect) => new D2DRect(rect.X, rect.Y, rect.Width, rect.Height);
+        public static implicit operator D2DRect(System.Drawing.RectangleF rect) => new D2DRect(rect.X, rect.Y, rect.Width, rect.Height);
+        public static implicit operator System.Drawing.RectangleF(D2DRect rect) => new System.Drawing.RectangleF(rect.X, rect.Y, rect.Width, rect.Height);
+        public static explicit operator System.Drawing.Rectangle(D2DRect rect) => System.Drawing.Rectangle.Round(rect);
     }
     #endregion Rect
 

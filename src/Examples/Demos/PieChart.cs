@@ -33,6 +33,7 @@ namespace unvell.D2DLib.Examples.Demos
 {
 	public partial class PieChart : DemoForm
 	{
+		private static readonly Random rand = new Random();
 		List<PieInfo> pies = new List<PieInfo>();
 
 		public PieChart()
@@ -61,7 +62,7 @@ namespace unvell.D2DLib.Examples.Demos
 				var angleSpan = record * 360;
 
 				var path = Device.CreatePieGeometry(figureOrigin, figureSize, currentAngle, currentAngle + angleSpan);
-				pies.Add(new PieInfo { path = path, color = D2DColor.Randomly() });
+				pies.Add(new PieInfo { path = path, color = RandomColor() });
 
 				currentAngle += angleSpan;
 			}
@@ -91,6 +92,13 @@ namespace unvell.D2DLib.Examples.Demos
 
 			CreateChart();
 			Invalidate();
+		}
+
+		/// <summary>Create color by randomly color components. </summary>
+		public static D2DColor RandomColor()
+		{
+			return new D2DColor(1, (float)rand.NextDouble(), (float)rand.NextDouble(),
+				(float)rand.NextDouble());
 		}
 	}
 
