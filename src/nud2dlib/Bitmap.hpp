@@ -24,9 +24,9 @@
 
 #pragma once
 
-#include "Context.h"
+#include "Context.hpp"
 
-extern "C" 
+extern "C"
 {
 	D2DLIB_API HANDLE CreateBitmapFromHBitmap(HANDLE ctx, HBITMAP hBitmap, BOOL useAlpha = FALSE);
 	D2DLIB_API HANDLE CreateBitmapFromBytes(HANDLE ctx, BYTE* buffer, UINT offset, UINT length);
@@ -40,7 +40,7 @@ extern "C"
 		D2D1_BITMAP_INTERPOLATION_MODE = D2D1_BITMAP_INTERPOLATION_MODE_LINEAR);
 
 	D2DLIB_API void DrawGDIBitmapRect(HANDLE context, HBITMAP bitmap,
-		D2D1_RECT_F* destRect = NULL, D2D1_RECT_F* srcRect = NULL, FLOAT opacity = 1, 
+		D2D1_RECT_F* destRect = NULL, D2D1_RECT_F* srcRect = NULL, FLOAT opacity = 1,
 		BOOL alpha = FALSE, D2D1_BITMAP_INTERPOLATION_MODE = D2D1_BITMAP_INTERPOLATION_MODE_LINEAR);
 
 	D2DLIB_API D2D1_SIZE_F GetBitmapSize(HANDLE d2dbitmap);

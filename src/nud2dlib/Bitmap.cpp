@@ -23,13 +23,13 @@
 */
 
 #include "stdafx.h"
-#include "Bitmap.h"
+#include "Bitmap.hpp"
 
 HANDLE CreateBitmapFromFile(HANDLE ctx,
   PCWSTR uri, UINT destinationWidth, UINT destinationHeight, ID2D1Bitmap **ppBitmap)
 {
 	D2DContext* context = reinterpret_cast<D2DContext*>(ctx);
-	
+
 	IWICBitmapDecoder *pDecoder = NULL;
 	IWICBitmapFrameDecode *pSource = NULL;
 	IWICStream *pStream = NULL;
@@ -38,7 +38,7 @@ HANDLE CreateBitmapFromFile(HANDLE ctx,
 
 	HRESULT hr = context->imageFactory->CreateDecoderFromFilename(
 		uri, NULL, GENERIC_READ, WICDecodeMetadataCacheOnLoad, &pDecoder);
-	
+
 	if (SUCCEEDED(hr))
   {
     hr = pDecoder->GetFrame(0, &pSource);
@@ -53,7 +53,7 @@ HANDLE CreateBitmapFromFile(HANDLE ctx,
 
 	if (SUCCEEDED(hr))
   {
-		hr = pConverter->Initialize(pSource, GUID_WICPixelFormat32bppPBGRA, WICBitmapDitherTypeNone, 
+		hr = pConverter->Initialize(pSource, GUID_WICPixelFormat32bppPBGRA, WICBitmapDitherTypeNone,
 			NULL, 0.f, WICBitmapPaletteTypeMedianCut);
 	}
 
@@ -74,9 +74,9 @@ HANDLE CreateBitmapFromFile(HANDLE ctx,
 HANDLE CreateBitmapFromHBitmap(HANDLE ctx, HBITMAP hBitmap, BOOL alpha)
 {
 	RetrieveContext(ctx);
-	
+
 	IWICBitmap* wicBitmap = NULL;
-	HRESULT hr = context->imageFactory->CreateBitmapFromHBITMAP(hBitmap, NULL, 
+	HRESULT hr = context->imageFactory->CreateBitmapFromHBITMAP(hBitmap, NULL,
 		alpha ? WICBitmapAlphaChannelOption::WICBitmapUsePremultipliedAlpha
 		: WICBitmapAlphaChannelOption::WICBitmapIgnoreAlpha, &wicBitmap);
 
@@ -131,7 +131,7 @@ HANDLE CreateBitmapFromMemory(HANDLE ctx, UINT width, UINT height, UINT stride, 
 
 	IWICBitmap* wicBitmap = NULL;
 
-	HRESULT hr = context->imageFactory->CreateBitmapFromMemory(width, height, 
+	HRESULT hr = context->imageFactory->CreateBitmapFromMemory(width, height,
 		GUID_WICPixelFormat32bppPBGRA, stride, length, buffer, &wicBitmap);
 
 	ID2D1Bitmap* d2dBitmap = NULL;
@@ -181,7 +181,7 @@ HANDLE CreateBitmapFromBytes(HANDLE ctx, BYTE* buffer, UINT offset, UINT length)
 		// Create the initial frame.
 		hr = decoder->GetFrame(0, &source);
 	}
-	
+
 	if (SUCCEEDED(hr))
 	{
 		// Convert the image format to 32bppPBGRA
@@ -191,7 +191,7 @@ HANDLE CreateBitmapFromBytes(HANDLE ctx, BYTE* buffer, UINT offset, UINT length)
 
 	if (SUCCEEDED(hr))
   {
-		hr = converter->Initialize(source, GUID_WICPixelFormat32bppPBGRA, 
+		hr = converter->Initialize(source, GUID_WICPixelFormat32bppPBGRA,
 			WICBitmapDitherTypeNone, NULL, 0.f, WICBitmapPaletteTypeMedianCut);
 	}
 
@@ -210,7 +210,7 @@ HANDLE CreateBitmapFromBytes(HANDLE ctx, BYTE* buffer, UINT offset, UINT length)
 	return (HANDLE)bitmap;
 }
 
-HANDLE CreateBitmapFromFile(HANDLE ctx, LPCWSTR filepath) 
+HANDLE CreateBitmapFromFile(HANDLE ctx, LPCWSTR filepath)
 {
 	RetrieveContext(ctx);
 
@@ -253,7 +253,7 @@ HANDLE CreateBitmapFromFile(HANDLE ctx, LPCWSTR filepath)
 
 	if (SUCCEEDED(hr))
   {
-		hr = converter->Initialize(source, GUID_WICPixelFormat32bppPBGRA, 
+		hr = converter->Initialize(source, GUID_WICPixelFormat32bppPBGRA,
 			WICBitmapDitherTypeNone, NULL, 0.f, WICBitmapPaletteTypeMedianCut);
 	}
 
@@ -277,7 +277,7 @@ void DrawGDIBitmap(HANDLE hContext, HBITMAP hBitmap, FLOAT opacity, BOOL alpha,
 	DrawGDIBitmapRect(hContext, hBitmap, NULL, NULL, opacity, alpha, interpolationMode);
 }
 
-void DrawGDIBitmapRect(HANDLE hContext, HBITMAP hBitmap, D2D1_RECT_F* rect, 
+void DrawGDIBitmapRect(HANDLE hContext, HBITMAP hBitmap, D2D1_RECT_F* rect,
 											 D2D1_RECT_F* sourceRectangle, FLOAT opacity, BOOL alpha,
 											 D2D1_BITMAP_INTERPOLATION_MODE interpolationMode)
 {
@@ -285,14 +285,14 @@ void DrawGDIBitmapRect(HANDLE hContext, HBITMAP hBitmap, D2D1_RECT_F* rect,
 
 	IWICBitmap* wicBmp = NULL;
 
-	context->imageFactory->CreateBitmapFromHBITMAP(hBitmap, 0, 
+	context->imageFactory->CreateBitmapFromHBITMAP(hBitmap, 0,
 		alpha ? WICBitmapAlphaChannelOption::WICBitmapUseAlpha
 		: WICBitmapAlphaChannelOption::WICBitmapIgnoreAlpha, &wicBmp);
 
 	ID2D1Bitmap* d2dBitmap = NULL;
 
 	HRESULT hr = context->renderTarget->CreateBitmapFromWicBitmap(wicBmp, NULL, &d2dBitmap);
-	
+
 	if (!SUCCEEDED(hr) || d2dBitmap == NULL && alpha)
 	{
 		// if convert is failed, try create d2d bitmap from 32bppPBGRA format

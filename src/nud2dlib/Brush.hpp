@@ -24,20 +24,34 @@
 
 #pragma once
 
-#include "Context.h"
+#include "Context.hpp"
 
-extern "C" 
+enum BrushType {
+	BrushType_SolidBrush,
+	BrushType_LinearGradientBrush,
+	BrushType_RadialGradientBrush,
+};
+
+struct BrushContext {
+	D2DContext* context;
+	ID2D1Brush* brush;
+	BrushType type;
+	union {
+		ID2D1GradientStopCollection* gradientStops = NULL;
+	};
+};
+
+extern "C"
 {
-	D2DLIB_API void DrawString(HANDLE handle, LPCWSTR text, D2D1_COLOR_F color,
-														 LPCWSTR fontName, FLOAT fontSize, D2D1_RECT_F* rect,
-														 DWRITE_TEXT_ALIGNMENT halign = DWRITE_TEXT_ALIGNMENT::DWRITE_TEXT_ALIGNMENT_LEADING,
-														 DWRITE_PARAGRAPH_ALIGNMENT valign = DWRITE_PARAGRAPH_ALIGNMENT::DWRITE_PARAGRAPH_ALIGNMENT_NEAR);
+	D2DLIB_API HANDLE CreateSolidColorBrush(HANDLE ctx, D2D1_COLOR_F color);
+	D2DLIB_API void SetSolidColorBrushColor(HANDLE brush, D2D1_COLOR_F color);
 
-	D2DLIB_API HANDLE CreateTextLayout(HANDLE ctx, LPCWSTR text, LPCWSTR fontName, FLOAT fontSize, D2D1_SIZE_F* size);
+	D2DLIB_API HANDLE CreateLinearGradientBrush(HANDLE ctx, D2D1_POINT_2F startPoint, D2D1_POINT_2F endPoint,
+		D2D1_GRADIENT_STOP* gradientStops, UINT gradientStopCount);
 
-	D2DLIB_API void MeasureText(HANDLE ctx, LPCWSTR text, LPCWSTR fontName, FLOAT fontSize, D2D1_SIZE_F* size);
+	D2DLIB_API HANDLE CreateRadialGradientBrush(HANDLE ctx, D2D1_POINT_2F origin, D2D1_POINT_2F offset,
+																						  FLOAT radiusX, FLOAT radiusY, D2D1_GRADIENT_STOP* gradientStops, 
+																							UINT gradientStopCount);
 
-	D2DLIB_API void DrawGlyphRun(HANDLE ctx, D2D1_POINT_2F baselineOrigin, 
-			const DWRITE_GLYPH_RUN *glyphRun, D2D1_COLOR_F color,
-			DWRITE_MEASURING_MODE measuringMode = DWRITE_MEASURING_MODE_NATURAL);
+	D2DLIB_API void ReleaseBrush(HANDLE brushHandle);
 }

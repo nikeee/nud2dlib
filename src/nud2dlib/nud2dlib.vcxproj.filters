@@ -21,40 +21,40 @@
     <ClInclude Include="stdafx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="targetver.h">
+    <ClInclude Include="targetver.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Effect.h">
+    <ClInclude Include="Effect.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Text.h">
+    <ClInclude Include="Text.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Simple.h">
+    <ClInclude Include="Simple.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Pen.h">
+    <ClInclude Include="Pen.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Context.h">
+    <ClInclude Include="Context.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Geometry.h">
+    <ClInclude Include="Geometry.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Brush.h">
+    <ClInclude Include="Brush.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Bitmap.h">
+    <ClInclude Include="Bitmap.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Transform.h">
+    <ClInclude Include="Transform.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="resource.h">
+    <ClInclude Include="resource.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="resource1.h">
+    <ClInclude Include="resource1.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

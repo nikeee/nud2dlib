@@ -175,19 +175,19 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Bitmap.h" />
-    <ClInclude Include="Brush.h" />
-    <ClInclude Include="Geometry.h" />
-    <ClInclude Include="Context.h" />
-    <ClInclude Include="Pen.h" />
-    <ClInclude Include="resource1.h" />
-    <ClInclude Include="Simple.h" />
-    <ClInclude Include="Text.h" />
-    <ClInclude Include="Effect.h" />
-    <ClInclude Include="Resource.h" />
+    <ClInclude Include="Bitmap.hpp" />
+    <ClInclude Include="Brush.hpp" />
+    <ClInclude Include="Geometry.hpp" />
+    <ClInclude Include="Context.hpp" />
+    <ClInclude Include="Pen.hpp" />
+    <ClInclude Include="resource1.hpp" />
+    <ClInclude Include="Simple.hpp" />
+    <ClInclude Include="Text.hpp" />
+    <ClInclude Include="Effect.hpp" />
+    <ClInclude Include="Resource.hpp" />
     <ClInclude Include="stdafx.h" />
-    <ClInclude Include="targetver.h" />
-    <ClInclude Include="Transform.h" />
+    <ClInclude Include="targetver.hpp" />
+    <ClInclude Include="Transform.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Bitmap.cpp" />

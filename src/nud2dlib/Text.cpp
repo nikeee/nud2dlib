@@ -23,7 +23,7 @@
 */
 
 #include "stdafx.h"
-#include "Text.h"
+#include "Text.hpp"
 
 D2DLIB_API void DrawString(HANDLE ctx, LPCWSTR text, D2D1_COLOR_F color,
 													 LPCWSTR fontName, FLOAT fontSize, D2D1_RECT_F* rect,
@@ -109,7 +109,7 @@ D2DLIB_API void MeasureText(HANDLE ctx, LPCWSTR text, LPCWSTR fontName, FLOAT fo
 	SafeRelease(&textLayout);
 }
 
-void DrawGlyphRun(HANDLE ctx, D2D1_POINT_2F baselineOrigin, 
+void DrawGlyphRun(HANDLE ctx, D2D1_POINT_2F baselineOrigin,
 			const DWRITE_GLYPH_RUN *glyphRun, D2D1_COLOR_F color,
 			DWRITE_MEASURING_MODE measuringMode)
 {
@@ -121,6 +121,6 @@ void DrawGlyphRun(HANDLE ctx, D2D1_POINT_2F baselineOrigin,
 //  [in]  IDWriteTextLayout *textLayout,
 //  [in]  ID2D1Brush *defaultForegroundBrush,
 //  D2D1_DRAW_TEXT_OPTIONS options = D2D1_DRAW_TEXT_OPTIONS_NONE
-//) 
+//)
 //{
 //}

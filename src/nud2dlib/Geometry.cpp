@@ -23,9 +23,9 @@
 */
 
 #include "stdafx.h"
-#include "Geometry.h"
-#include "Brush.h"
-#include "Pen.h"
+#include "Geometry.hpp"
+#include "Brush.hpp"
+#include "Pen.hpp"
 
 void DestroyGeometry(HANDLE geometryHandle) {
 	D2DGeometryContext* context = reinterpret_cast<D2DGeometryContext*>(geometryHandle);
@@ -36,7 +36,7 @@ void DestroyGeometry(HANDLE geometryHandle) {
 HANDLE CreateRectangleGeometry(HANDLE ctx, D2D1_RECT_F& rect)
 {
 	RetrieveContext(ctx);
-	
+
 	ID2D1RectangleGeometry* rectGeo;
 	context->factory->CreateRectangleGeometry(rect, &rectGeo);
 
@@ -61,7 +61,7 @@ HANDLE CreateEllipseGeometry(HANDLE ctx, const D2D1_ELLIPSE& ellipse)
 	return (HANDLE)pathCtx;
 }
 
-HANDLE CreatePathGeometry(HANDLE ctx) 
+HANDLE CreatePathGeometry(HANDLE ctx)
 {
 	D2DContext* context = reinterpret_cast<D2DContext*>(ctx);
 
@@ -79,10 +79,10 @@ HANDLE CreatePathGeometry(HANDLE ctx)
 	return (HANDLE)pathContext;
 }
 
-void DestroyPathGeometry(HANDLE ctx) 
+void DestroyPathGeometry(HANDLE ctx)
 {
 	D2DPathContext* pathContext = reinterpret_cast<D2DPathContext*>(ctx);
-	
+
 	SafeRelease(&pathContext->path);
 	SafeRelease(&pathContext->sink);
 
@@ -107,14 +107,14 @@ void ClosePath(HANDLE ctx)
 	pathContext->sink->EndFigure(D2D1_FIGURE_END_CLOSED);
 	pathContext->sink->Close();
 	pathContext->isClosed = true;
-	
+
 	SafeRelease(&pathContext->sink);
 }
 
 void AddPathLines(HANDLE ctx, D2D1_POINT_2F* points, UINT count)
 {
 	D2DPathContext* pathContext = reinterpret_cast<D2DPathContext*>(ctx);
-	
+
 	if (!pathContext->isOpen)
 	{
 		pathContext->sink->BeginFigure(points[0], D2D1_FIGURE_BEGIN_FILLED);
@@ -185,7 +185,7 @@ void DrawPath(HANDLE pathCtx, D2D1_COLOR_F strokeColor, FLOAT strokeWidth, D2D1_
 {
 	D2DPathContext* pathContext = reinterpret_cast<D2DPathContext*>(pathCtx);
 	D2DContext* context = pathContext->d2context;
-	
+
 	ID2D1Factory* factory = context->factory;
 	ID2D1RenderTarget* renderTarget = context->renderTarget;
 
@@ -217,7 +217,7 @@ void DrawPathWithPen(HANDLE pathCtx, HANDLE strokePen, FLOAT strokeWidth)
 	D2DPen* pen = reinterpret_cast<D2DPen*>(strokePen);
 	D2DPathContext* pathContext = reinterpret_cast<D2DPathContext*>(pathCtx);
 	ID2D1RenderTarget* renderTarget = pathContext->d2context->renderTarget;
-	
+
 	if (pen->brush != NULL) {
 		renderTarget->DrawGeometry(pathContext->path, pen->brush, strokeWidth, pen->strokeStyle);
 	}
@@ -232,17 +232,17 @@ void FillPathD(HANDLE pathCtx, D2D1_COLOR_F fillColor)
 	{
 		ID2D1SolidColorBrush* fillBrush = NULL;
 		renderTarget->CreateSolidColorBrush(fillColor, &fillBrush);
-	
+
 		if (fillBrush != NULL) {
 			renderTarget->FillGeometry(pathContext->path, fillBrush);
 		}
-	
+
 		SafeRelease(&fillBrush);
 	}
 }
 
-void DrawBeziers(HANDLE ctx, D2D1_BEZIER_SEGMENT* bezierSegments, UINT count, 
-								 D2D1_COLOR_F strokeColor, FLOAT strokeWidth, 
+void DrawBeziers(HANDLE ctx, D2D1_BEZIER_SEGMENT* bezierSegments, UINT count,
+								 D2D1_COLOR_F strokeColor, FLOAT strokeWidth,
 								 D2D1_DASH_STYLE dashStyle)
 {
 	if (count <= 0) return;
@@ -254,7 +254,7 @@ void DrawBeziers(HANDLE ctx, D2D1_BEZIER_SEGMENT* bezierSegments, UINT count,
 
 	ID2D1PathGeometry* path;
 	ID2D1GeometrySink* sink;
-	
+
 	context->factory->CreatePathGeometry(&path);
 	path->Open(&sink);
 	//sink->SetFillMode(D2D1_FILL_MODE_WINDING);
@@ -286,7 +286,7 @@ void DrawBeziers(HANDLE ctx, D2D1_BEZIER_SEGMENT* bezierSegments, UINT count,
 
 	SafeRelease(&strokeBrush);
 	SafeRelease(&strokeStyle);
-	
+
 	SafeRelease(&sink);
 	SafeRelease(&path);
 }
@@ -410,10 +410,10 @@ bool PathFillContainsPoint(HANDLE pathCtx, D2D1_POINT_2F point)
 bool PathStrokeContainsPoint(HANDLE pathCtx, D2D1_POINT_2F point, FLOAT strokeWidth, D2D1_DASH_STYLE dashStyle)
 {
 	D2DPathContext* pathContext = reinterpret_cast<D2DPathContext*>(pathCtx);
-	
+
 	ID2D1Factory* factory = pathContext->d2context->factory;
 	ID2D1StrokeStyle *strokeStyle = NULL;
-	
+
 	if (dashStyle != D2D1_DASH_STYLE_SOLID)
 	{
 		factory->CreateStrokeStyle(D2D1::StrokeStyleProperties(

@@ -23,9 +23,9 @@
 */
 
 #include "stdafx.h"
-#include "Simple.h"
-#include "Pen.h"
-#include "Brush.h"
+#include "Simple.hpp"
+#include "Pen.hpp"
+#include "Brush.hpp"
 
 void DrawLine(HANDLE ctx, D2D1_POINT_2F start, D2D1_POINT_2F end, D2D1_COLOR_F color,
 	FLOAT width, D2D1_DASH_STYLE dashStyle, D2D1_CAP_STYLE startCap, D2D1_CAP_STYLE endCap)
@@ -108,7 +108,7 @@ void DrawLines(HANDLE ctx, D2D1_POINT_2F* points, UINT count, D2D1_COLOR_F color
 
 	ID2D1SolidColorBrush* brush = NULL;
 	ID2D1StrokeStyle* strokeStyle = NULL;
-	
+
 	context->renderTarget->CreateSolidColorBrush(color, &brush);
 
 	if (brush != NULL) {
@@ -267,7 +267,7 @@ D2DLIB_API void DrawRoundedRect(HANDLE ctx, D2D1_ROUNDED_RECT* roundedRect, D2D1
 }
 
 D2DLIB_API void DrawRoundedRectWithBrush(HANDLE ctx, D2D1_ROUNDED_RECT* roundedRect,
-	HANDLE strokePen, HANDLE fillBrush, float strokeWidth) 
+	HANDLE strokePen, HANDLE fillBrush, float strokeWidth)
 {
 	RetrieveContext(ctx);
 

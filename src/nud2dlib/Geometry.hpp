@@ -24,7 +24,7 @@
 
 #pragma once
 
-#include "Context.h"
+#include "Context.hpp"
 
 extern "C"
 {
@@ -50,15 +50,15 @@ extern "C"
 		D2D1_ARC_SIZE arcSize = D2D1_ARC_SIZE::D2D1_ARC_SIZE_SMALL,
 		D2D1_SWEEP_DIRECTION sweepDirection = D2D1_SWEEP_DIRECTION::D2D1_SWEEP_DIRECTION_CLOCKWISE);
 
-	D2DLIB_API void DrawBeziers(HANDLE ctx, D2D1_BEZIER_SEGMENT* bezierSegments, UINT count, 
-															D2D1_COLOR_F strokeColor, FLOAT strokeWidth = 1, 
+	D2DLIB_API void DrawBeziers(HANDLE ctx, D2D1_BEZIER_SEGMENT* bezierSegments, UINT count,
+															D2D1_COLOR_F strokeColor, FLOAT strokeWidth = 1,
 															D2D1_DASH_STYLE dashStyle = D2D1_DASH_STYLE::D2D1_DASH_STYLE_SOLID);
 
 	D2DLIB_API void DrawPath(HANDLE pathCtx, D2D1_COLOR_F strokeColor, FLOAT strokeWidth, D2D1_DASH_STYLE dashStyle);
 	D2DLIB_API void DrawPathWithPen(HANDLE pathCtx, HANDLE strokePen, FLOAT strokeWidth);
 	D2DLIB_API void FillPathD(HANDLE pathCtx, D2D1_COLOR_F fillColor);
 
-	D2DLIB_API void FillGeometryWithBrush(HANDLE ctx, HANDLE geoHandle, 
+	D2DLIB_API void FillGeometryWithBrush(HANDLE ctx, HANDLE geoHandle,
 		__in HANDLE brushHandle, __in_opt HANDLE opacityBrushHandle = NULL);
 
 	D2DLIB_API bool PathFillContainsPoint(HANDLE pathCtx, D2D1_POINT_2F point);

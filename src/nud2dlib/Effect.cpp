@@ -23,9 +23,9 @@
 */
 
 #include "stdafx.h"
-#include "Effect.h"
+#include "Effect.hpp"
 
-//#include "d2d1effects.h"
+//#include "d2d1effects.hpp"
 
 
 void CreateEffect(HANDLE ctx)

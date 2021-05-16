@@ -23,9 +23,9 @@
 */
 
 #include "stdafx.h"
-#include "Pen.h"
+#include "Pen.hpp"
 
-D2DLIB_API HANDLE CreatePenStroke(HANDLE ctx, D2D1_COLOR_F color, 
+D2DLIB_API HANDLE CreatePenStroke(HANDLE ctx, D2D1_COLOR_F color,
 	D2D1_DASH_STYLE dashStyle, FLOAT* dashes, UINT dashCount, FLOAT dashOffset)
 {
 	RetrieveContext(ctx);

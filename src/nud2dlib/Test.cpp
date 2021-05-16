@@ -23,8 +23,8 @@
 */
 
 #include "stdafx.h"
-#include "Context.h"
-#include "Simple.h"
+#include "Context.hpp"
+#include "Simple.hpp"
 
 void Test(HANDLE handle)
 {
@@ -47,7 +47,7 @@ void Test(HANDLE handle)
 
 	IDWriteTextFormat* textFormat = NULL;
 	context->writeFactory->CreateTextFormat(
-		TEXT("NSimSun"), 
+		TEXT("NSimSun"),
 		NULL,
 		DWRITE_FONT_WEIGHT_NORMAL,
 		DWRITE_FONT_STYLE_NORMAL,
@@ -84,7 +84,7 @@ void TestDraw1(HANDLE ctx)
 	RetrieveContext(ctx);
 
 	ID2D1RenderTarget* render = context->renderTarget;
-	
+
 	ID2D1SolidColorBrush* brush;
 	render->CreateSolidColorBrush(D2D1::ColorF(D2D1::ColorF::Silver), &brush);
 

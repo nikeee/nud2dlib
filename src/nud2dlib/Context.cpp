@@ -26,7 +26,7 @@
 //
 
 #include "stdafx.h"
-#include "Context.h"
+#include "Context.hpp"
 
 #include <stack>
 using namespace std;
@@ -43,7 +43,7 @@ HANDLE CreateContext(HWND hwnd)
 	context->matrixStack = new std::stack<D2D1_MATRIX_3X2_F>();
 
 	hr = D2D1CreateFactory(D2D1_FACTORY_TYPE_SINGLE_THREADED, &context->factory);
-	
+
 	if (!SUCCEEDED(hr)) {
 		context->lastErrorCode = hr;
 		return NULL;
@@ -59,7 +59,7 @@ HANDLE CreateContext(HWND hwnd)
 
 	hr = CoCreateInstance(CLSID_WICImagingFactory, NULL, CLSCTX_INPROC_SERVER,
 			IID_IWICImagingFactory, (LPVOID*)&context->imageFactory);
-	
+
 	if (!SUCCEEDED(hr)) {
 		context->lastErrorCode = hr;
 		return NULL;
@@ -87,7 +87,7 @@ HANDLE CreateContext(HWND hwnd)
 void DestroyContext(HANDLE handle)
 {
 	D2DContext* context = reinterpret_cast<D2DContext*>(handle);
-	
+
 	delete context->matrixStack;
 
 	SafeRelease(&context->imageFactory);
@@ -97,7 +97,7 @@ void DestroyContext(HANDLE handle)
 
 	//if (context->solidBrushes != NULL)
 	//{
-	//	for( std::map<UINT32, ID2D1SolidColorBrush*>::iterator it = context->solidBrushes->begin(); 
+	//	for( std::map<UINT32, ID2D1SolidColorBrush*>::iterator it = context->solidBrushes->begin();
 	//		it != context->solidBrushes->end(); it++)
 	//	{
 	//		SafeRelease(&context->solidBrushes->at(it->first));
@@ -210,10 +210,10 @@ HANDLE CreateBitmapRenderTarget(HANDLE ctx, D2D1_SIZE_F size)
 	bitmapRenderTargetContext->factory = context->factory;
 	bitmapRenderTargetContext->imageFactory = context->imageFactory;
 	bitmapRenderTargetContext->writeFactory = context->writeFactory;
-	
+
 	HRESULT hr;
 
-	if (size.width <= 0 && size.height <= 0) 
+	if (size.width <= 0 && size.height <= 0)
 	{
 		hr = context->renderTarget->CreateCompatibleRenderTarget(
 			&bitmapRenderTargetContext->bitmapRenderTarget);
@@ -238,7 +238,7 @@ void DrawBitmapRenderTarget(HANDLE ctx, HANDLE bitmapRenderTargetHandle, D2D1_RE
 	RetrieveContext(ctx);
 	D2DContext* bitmapRenderTargetContext = reinterpret_cast<D2DContext*>(bitmapRenderTargetHandle);
 
-	if (bitmapRenderTargetContext->bitmap == NULL) 
+	if (bitmapRenderTargetContext->bitmap == NULL)
 	{
 		HRESULT hr = bitmapRenderTargetContext->bitmapRenderTarget->GetBitmap(&bitmapRenderTargetContext->bitmap);
 	}
@@ -251,7 +251,7 @@ void DrawBitmapRenderTarget(HANDLE ctx, HANDLE bitmapRenderTargetHandle, D2D1_RE
 HANDLE GetBitmapRenderTargetBitmap(HANDLE bitmapRenderTargetHandle)
 {
 	RetrieveContext(bitmapRenderTargetHandle);
-	
+
 	ID2D1Bitmap* bitmap = NULL;
 	context->bitmapRenderTarget->GetBitmap(&bitmap);
 
@@ -328,7 +328,7 @@ void PushLayer(HANDLE ctx, HANDLE layerHandle, D2D1_RECT_F& contentBounds, __in_
 	context->renderTarget->PushLayer(&params, layer);
 }
 
-void PopLayer(HANDLE ctx) 
+void PopLayer(HANDLE ctx)
 {
 	RetrieveContext(ctx);
 	context->renderTarget->PopLayer();
