@@ -23,9 +23,6 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.Runtime.InteropServices;
-using System.Text;
 
 using FLOAT = System.Single;
 using UINT = System.UInt32;
@@ -37,14 +34,14 @@ using BOOL = System.Int32;
 
 namespace unvell.D2DLib
 {
-  public class D2DLinearGradientBrush : D2DBrush
-  {
-    public D2DGradientStop[] GradientStops { get; private set; }
-
-    internal D2DLinearGradientBrush(HANDLE handle, D2DGradientStop[] gradientStops)
-      : base(handle)
+    public class D2DLinearGradientBrush : D2DBrush
     {
-      this.GradientStops = gradientStops;
+        public D2DGradientStop[] GradientStops { get; private set; }
+
+        internal D2DLinearGradientBrush(HANDLE handle, D2DGradientStop[] gradientStops)
+          : base(handle)
+        {
+            GradientStops = gradientStops ?? throw new ArgumentNullException(nameof(gradientStops));
+        }
     }
-  }
 }

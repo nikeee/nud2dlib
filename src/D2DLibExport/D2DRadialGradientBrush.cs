@@ -37,28 +37,28 @@ using BOOL = System.Int32;
 
 namespace unvell.D2DLib
 {
-  public class D2DRadialGradientBrush : D2DBrush
-  {
-    public D2DGradientStop[] GradientStops { get; private set; }
-
-    internal D2DRadialGradientBrush(HANDLE handle, D2DGradientStop[] gradientStops)
-      : base(handle)
+    public class D2DRadialGradientBrush : D2DBrush
     {
-      this.GradientStops = gradientStops;
+        public D2DGradientStop[] GradientStops { get; private set; }
+
+        internal D2DRadialGradientBrush(HANDLE handle, D2DGradientStop[] gradientStops)
+          : base(handle)
+        {
+            GradientStops = gradientStops ?? throw new ArgumentNullException(nameof(gradientStops));
+        }
     }
-  }
 
-  [Serializable]
-  [StructLayout(LayoutKind.Sequential)]
-  public struct D2DGradientStop
-  {
-    public FLOAT position;
-    public D2DColor color;
-
-    public D2DGradientStop(FLOAT position, D2DColor color)
+    [Serializable]
+    [StructLayout(LayoutKind.Sequential)]
+    public struct D2DGradientStop
     {
-      this.position = position;
-      this.color = color;
+        public FLOAT Position;
+        public D2DColor Color;
+
+        public D2DGradientStop(FLOAT position, D2DColor color)
+        {
+            Position = position;
+            Color = color;
+        }
     }
-  }
 }

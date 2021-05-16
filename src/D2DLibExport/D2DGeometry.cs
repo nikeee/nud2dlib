@@ -37,33 +37,34 @@ using BOOL = System.Int32;
 
 namespace unvell.D2DLib
 {
-  public class D2DGeometry : D2DObject
-  {
-    internal HANDLE DeviceHandle { get; private set; }
-
-    internal D2DGeometry(HANDLE deviceHandle, HANDLE geoHandle)
-      : base(geoHandle)
+    public class D2DGeometry : D2DObject
     {
-      this.DeviceHandle = deviceHandle;
-    }
+        internal HANDLE DeviceHandle { get; private set; }
 
-    // FIXME: TO be implemented
-    //public void FillGeometry(D2DBrush brush, [Optional] D2DBrush opacityBrush)
-    //{
-    //  // TODO
-    //}
+        internal D2DGeometry(HANDLE deviceHandle, HANDLE geoHandle)
+          : base(geoHandle)
+        {
+            DeviceHandle = deviceHandle;
+        }
 
-    public D2DRect GetBounds()
-    {
-      var rect = new D2DRect();
-      D2D.GetGeometryBounds(this.Handle, ref rect);
-      return rect;
-    }
+        // FIXME: TO be implemented
+        //public void FillGeometry(D2DBrush brush, [Optional] D2DBrush opacityBrush)
+        //{
+        //  // TODO
+        //}
 
-    public override void Dispose()
-    {
-      if (this.Handle != IntPtr.Zero) D2D.DestroyGeometry(this.Handle);
-      this.handle = IntPtr.Zero;
+        public D2DRect GetBounds()
+        {
+            var rect = new D2DRect();
+            D2D.GetGeometryBounds(Handle, ref rect);
+            return rect;
+        }
+
+        public override void Dispose()
+        {
+            if (Handle != IntPtr.Zero)
+                D2D.DestroyGeometry(Handle);
+            handle = IntPtr.Zero;
+        }
     }
-  }
 }

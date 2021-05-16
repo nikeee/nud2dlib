@@ -22,10 +22,6 @@
  * SOFTWARE.
  */
 
-using System;
-using System.Collections.Generic;
-using System.Runtime.InteropServices;
-using System.Text;
 
 using FLOAT = System.Single;
 using UINT = System.UInt32;
@@ -37,26 +33,20 @@ using BOOL = System.Int32;
 
 namespace unvell.D2DLib
 {
-  public class D2DSolidColorBrush : D2DBrush
-  {
-    private D2DColor color;
-
-    public D2DColor Color
+    public class D2DSolidColorBrush : D2DBrush
     {
-      get
-      {
-        return color;
-      }
-      set
-      {
-        D2D.SetSolidColorBrushColor(this.Handle, value);
-      }
-    }
+        private D2DColor _color;
 
-    internal D2DSolidColorBrush(HANDLE handle, D2DColor color)
-      : base(handle)
-    {
-      this.color = color;
+        public D2DColor Color
+        {
+            get => _color;
+            set => D2D.SetSolidColorBrushColor(Handle, _color = value);
+        }
+
+        internal D2DSolidColorBrush(HANDLE handle, D2DColor color)
+          : base(handle)
+        {
+            _color = color;
+        }
     }
-  }
 }

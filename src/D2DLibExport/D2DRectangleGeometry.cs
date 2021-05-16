@@ -37,11 +37,9 @@ using BOOL = System.Int32;
 
 namespace unvell.D2DLib
 {
-  public class D2DRectangleGeometry : D2DGeometry
-  {
-    internal D2DRectangleGeometry(HANDLE deviceHandle, HANDLE geoHandle)
-      : base(deviceHandle, geoHandle)
+    public class D2DRectangleGeometry : D2DGeometry
     {
+        internal D2DRectangleGeometry(HANDLE deviceHandle, HANDLE geoHandle)
+          : base(deviceHandle, geoHandle) { }
     }
-  }
 }

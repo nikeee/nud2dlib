@@ -36,23 +36,16 @@ using BOOL = System.Int32;
 
 namespace unvell.D2DLib
 {
-	public class D2DBitmapGraphics : D2DGraphics, IDisposable
-	{
-		internal D2DBitmapGraphics(HANDLE handle)
-			: base(handle)
-		{
-		}
+    public class D2DBitmapGraphics : D2DGraphics, IDisposable
+    {
+        internal D2DBitmapGraphics(HANDLE handle) : base(handle) { }
 
-		public D2DBitmap GetBitmap()
-		{
-			HANDLE bitmapHandle = D2D.GetBitmapRenderTargetBitmap(this.Handle);
-			return bitmapHandle == HANDLE.Zero ? null : new D2DBitmap(bitmapHandle);
-		}
+        public D2DBitmap GetBitmap()
+        {
+            HANDLE bitmapHandle = D2D.GetBitmapRenderTargetBitmap(this.Handle);
+            return bitmapHandle == HANDLE.Zero ? null : new D2DBitmap(bitmapHandle);
+        }
 
-		public void Dispose()
-		{
-			D2D.DestroyBitmapRenderTarget(this.Handle);
-		}
-	}
-
+        public void Dispose() => D2D.DestroyBitmapRenderTarget(Handle);
+    }
 }

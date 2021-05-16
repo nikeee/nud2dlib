@@ -23,9 +23,6 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.Runtime.InteropServices;
-using System.Text;
 
 using FLOAT = System.Single;
 using UINT = System.UInt32;
@@ -37,20 +34,21 @@ using BOOL = System.Int32;
 
 namespace unvell.D2DLib
 {
-  public class D2DObject : IDisposable
-  {
-    protected HANDLE handle;
-    internal HANDLE Handle { get { return this.handle; } }
-
-    internal D2DObject(HANDLE handle)
+    public class D2DObject : IDisposable
     {
-      this.handle = handle;
-    }
+        protected HANDLE handle;
+        internal HANDLE Handle => handle;
 
-    public virtual void Dispose()
-    {
-      if (this.Handle != IntPtr.Zero) D2D.ReleaseObject(this.Handle);
-      this.handle = IntPtr.Zero;
+        internal D2DObject(HANDLE handle)
+        {
+            this.handle = handle;
+        }
+
+        public virtual void Dispose()
+        {
+            if (handle != IntPtr.Zero)
+                D2D.ReleaseObject(handle);
+            handle = IntPtr.Zero;
+        }
     }
-  }
 }

@@ -37,36 +37,35 @@ using BOOL = System.Int32;
 
 namespace unvell.D2DLib
 {
-	public class D2DPen : D2DObject
-	{
-		public D2DDevice Device { get; private set; }
+    public class D2DPen : D2DObject
+    {
+        public D2DDevice Device { get; private set; }
 
-		public D2DColor Color { get; private set; }
+        public D2DColor Color { get; private set; }
 
-		public D2DDashStyle DashStyle { get; private set; }
+        public D2DDashStyle DashStyle { get; private set; }
 
-		public float[] CustomDashes { get; private set; }
+        public float[]/*?*/ CustomDashes { get; private set; }
 
-		public float DashOffset { get; private set; }
+        public float DashOffset { get; private set; }
 
-		internal D2DPen(D2DDevice Device, HANDLE handle, D2DColor color, D2DDashStyle dashStyle = D2DDashStyle.Solid,
-			float[] customDashes = null, float dashOffset = 0f)
-			: base(handle)
-		{
-			this.Device = Device;
-			this.Color = color;
-			this.DashStyle = dashStyle;
-			this.CustomDashes = customDashes;
-			this.DashOffset = dashOffset;
-		}
+        internal D2DPen(D2DDevice device, HANDLE handle, D2DColor color, D2DDashStyle dashStyle = D2DDashStyle.Solid, float[] customDashes = null, float dashOffset = 0f)
+            : base(handle)
+        {
+            Device = device;
+            Color = color;
+            DashStyle = dashStyle;
+            CustomDashes = customDashes;
+            DashOffset = dashOffset;
+        }
 
-		public override void Dispose()
-		{
-			if (this.Handle != IntPtr.Zero)
-			{
-				this.Device.DestroyPen(this);
-				this.handle = IntPtr.Zero;
-			}
-		}
-	}
+        public override void Dispose()
+        {
+            if (Handle != IntPtr.Zero)
+            {
+                Device.DestroyPen(this);
+                handle = IntPtr.Zero;
+            }
+        }
+    }
 }

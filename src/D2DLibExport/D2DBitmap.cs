@@ -37,17 +37,17 @@ using BOOL = System.Int32;
 
 namespace unvell.D2DLib
 {
-  public class D2DBitmap : D2DObject
-  {
-    public D2DSize Size { get; private set; }
-
-    public FLOAT Height { get { return this.Size.Height; } }
-    public FLOAT Width { get { return this.Size.Width; } }
-
-    internal D2DBitmap(HANDLE handle)
-      : base(handle)
+    public class D2DBitmap : D2DObject
     {
-      this.Size = D2D.GetBitmapSize(handle);
+        public D2DSize Size { get; private set; }
+
+        public FLOAT Height => Size.Height;
+        public FLOAT Width => Size.Width;
+
+        internal D2DBitmap(HANDLE handle)
+          : base(handle)
+        {
+            Size = D2D.GetBitmapSize(handle);
+        }
     }
-  }
 }

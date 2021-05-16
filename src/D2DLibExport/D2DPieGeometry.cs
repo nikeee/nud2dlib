@@ -37,16 +37,11 @@ using BOOL = System.Int32;
 
 namespace unvell.D2DLib
 {
-	public class D2DPieGeometry : D2DGeometry
-	{
-		internal D2DPieGeometry(HANDLE deviceHandle, HANDLE pathHandle)
-			: base(deviceHandle, pathHandle)
-		{
-		}
+    public class D2DPieGeometry : D2DGeometry
+    {
+        internal D2DPieGeometry(HANDLE deviceHandle, HANDLE pathHandle)
+            : base(deviceHandle, pathHandle) { }
 
-    public override void Dispose()
-		{
-			D2D.DestroyPathGeometry(this.Handle);
-		}
-	}
+        public override void Dispose() => D2D.DestroyPathGeometry(Handle);
+    }
 }

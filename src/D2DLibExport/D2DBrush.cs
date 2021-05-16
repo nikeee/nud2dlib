@@ -43,8 +43,9 @@ namespace unvell.D2DLib
 
 		public override void Dispose()
 		{
-			if (this.Handle != IntPtr.Zero) D2D.ReleaseBrush(this.Handle);
-			this.handle = IntPtr.Zero;
+			if (Handle != IntPtr.Zero)
+				D2D.ReleaseBrush(this.Handle);
+			handle = IntPtr.Zero;
 		}
 	}
 }

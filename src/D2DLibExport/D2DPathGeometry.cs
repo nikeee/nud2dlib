@@ -38,65 +38,49 @@ using System.Numerics;
 
 namespace unvell.D2DLib
 {
-	public class D2DPathGeometry : D2DGeometry
-	{
-		internal D2DPathGeometry(HANDLE deviceHandle, HANDLE pathHandle)
-			: base(deviceHandle, pathHandle)
-		{
-		}
-
-    public void SetStartPoint(FLOAT x, FLOAT y)
+    public class D2DPathGeometry : D2DGeometry
     {
-      this.SetStartPoint(new Vector2(x, y));
+        internal D2DPathGeometry(HANDLE deviceHandle, HANDLE pathHandle)
+            : base(deviceHandle, pathHandle) { }
+
+        public void SetStartPoint(FLOAT x, FLOAT y) => SetStartPoint(new Vector2(x, y));
+
+        public void SetStartPoint(Vector2 startPoint) => D2D.SetPathStartPoint(Handle, startPoint);
+
+        public void AddLines(Vector2[] points) => D2D.AddPathLines(Handle, points);
+
+        public void AddBeziers(D2DBezierSegment[] bezierSegments) => D2D.AddPathBeziers(Handle, bezierSegments);
+
+        // TODO: unnecessary API and it doesn't work very well, consider to remove
+        //public void AddEllipse(D2DEllipse ellipse)
+        //{
+        //	D2D.AddPathEllipse(Handle, ref ellipse);
+        //}
+
+        public void AddArc(Vector2 endPoint, D2DSize size, FLOAT sweepAngle,
+                D2DArcSize arcSize = D2DArcSize.Small,
+                D2DSweepDirection sweepDirection = D2DSweepDirection.Clockwise)
+        {
+            D2D.AddPathArc(Handle, endPoint, size, sweepAngle, arcSize, sweepDirection);
+        }
+
+        public bool FillContainsPoint(Vector2 point)
+        {
+            return D2D.PathFillContainsPoint(Handle, point);
+        }
+
+        public bool StrokeContainsPoint(Vector2 point, FLOAT width = 1, D2DDashStyle dashStyle = D2DDashStyle.Solid)
+        {
+            return D2D.PathStrokeContainsPoint(Handle, point, width, dashStyle);
+        }
+
+        public void ClosePath() => D2D.ClosePath(Handle);
+
+        public override void Dispose()
+        {
+            if (handle != IntPtr.Zero)
+                D2D.DestroyPathGeometry(handle);
+            handle = IntPtr.Zero;
+        }
     }
-
-		public void SetStartPoint(Vector2 startPoint)
-		{
-			D2D.SetPathStartPoint(this.Handle, startPoint);
-		}
-
-		public void AddLines(Vector2[] points)
-		{
-			D2D.AddPathLines(this.Handle, points);
-		}
-
-		public void AddBeziers(D2DBezierSegment[] bezierSegments)
-		{
-			D2D.AddPathBeziers(this.Handle, bezierSegments);
-		}
-
-    // TODO: unnecessary API and it doesn't work very well, consider to remove
-    //public void AddEllipse(D2DEllipse ellipse)
-    //{
-    //	D2D.AddPathEllipse(this.Handle, ref ellipse);
-    //}
-
-    public void AddArc(Vector2 endPoint, D2DSize size, FLOAT sweepAngle,
-			D2DArcSize arcSize = D2DArcSize.Small,
-			D2DSweepDirection sweepDirection = D2DSweepDirection.Clockwise)
-		{
-			D2D.AddPathArc(this.Handle, endPoint, size, sweepAngle, arcSize, sweepDirection);
-		}
-
-		public bool FillContainsPoint(Vector2 point)
-		{
-			return D2D.PathFillContainsPoint(this.Handle, point);
-		}
-
-		public bool StrokeContainsPoint(Vector2 point, FLOAT width = 1, D2DDashStyle dashStyle = D2DDashStyle.Solid)
-		{
-			return D2D.PathStrokeContainsPoint(this.Handle, point, width, dashStyle);
-		}
-
-		public void ClosePath()
-		{
-			D2D.ClosePath(this.Handle);
-		}
-
-		public override void Dispose()
-		{
-      if (this.Handle != IntPtr.Zero) D2D.DestroyPathGeometry(this.Handle);
-      this.handle = IntPtr.Zero;
-		}
-	}
 }
