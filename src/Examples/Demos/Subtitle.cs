@@ -39,7 +39,7 @@ namespace unvell.D2DLib.Examples.Demos
 
 			Size = new Size(1280, 768);
 			BackgroundImage = Device.LoadBitmap(Resources.space_bg);
-			ShowFPS = true;
+			DrawFps = true;
 			AnimationDraw = true;
 
 			// create a memory bitmap

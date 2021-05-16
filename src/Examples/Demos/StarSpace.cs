@@ -45,7 +45,7 @@ namespace unvell.D2DLib.Examples.Demos
 			DesktopLocation = new Point(0, 0);
 			Size = Screen.GetBounds(this).Size;
 
-			ShowFPS = true;
+			DrawFps = true;
 			AnimationDraw = true;
 
 			// create a device brush in advance rather than pass color

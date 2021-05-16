@@ -41,7 +41,7 @@ namespace unvell.D2DLib.Examples.Demos
             BackColor = Color.Black;
 
             AnimationDraw = true;
-            ShowFPS = true;
+            DrawFps = true;
         }
 
         protected override void OnLoad(EventArgs e)

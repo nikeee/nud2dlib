@@ -22,8 +22,6 @@
 * SOFTWARE.
 */
 
-using System;
-
 namespace unvell.D2DLib.Windows.Forms
 {
     public class D2DControl : System.Windows.Forms.Control
@@ -33,9 +31,7 @@ namespace unvell.D2DLib.Windows.Forms
 
         private D2DGraphics _graphics;
 
-        private DateTime _lastFpsUpdate = DateTime.Now;
-        private int _frameCounter = 0;
-        private int lastFps = 0;
+        private FpsCounter _fpsCounter = new();
         public bool DrawFps { get; set; }
 
         protected override void CreateHandle()
@@ -47,9 +43,8 @@ namespace unvell.D2DLib.Windows.Forms
             _graphics = new D2DGraphics(_device);
         }
 
-        private D2DBitmap _backgroundImage = null;
-
-        public new D2DBitmap BackgroundImage
+        private D2DBitmap? _backgroundImage = null;
+        public new D2DBitmap? BackgroundImage
         {
             get => _backgroundImage;
             set
@@ -81,17 +76,9 @@ namespace unvell.D2DLib.Windows.Forms
 
         private void DrawAndCountFps()
         {
-            if (_lastFpsUpdate.Second != DateTime.Now.Second)
-            {
-                lastFps = _frameCounter;
-                _frameCounter = 0;
-            }
-            else
-            {
-                ++_frameCounter;
-            }
+            _fpsCounter.Update();
 
-            var info = $"{lastFps} fps";
+            var info = $"{_fpsCounter.FramesPerSecond} fps";
             var placeSize = new D2DSize(1000, 1000);
             var size = _graphics.MeasureText(info, Font.Name, Font.Size, placeSize);
             _graphics.DrawText(info, D2DColor.Black, ClientRectangle.Right - size.Width - 10, 5);

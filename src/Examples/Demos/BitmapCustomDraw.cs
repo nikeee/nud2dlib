@@ -36,7 +36,7 @@ namespace unvell.D2DLib.Examples.Demos
         {
             Text = "Bitmap Draw - d2dlib Examples";
             AnimationDraw = true;
-            ShowFPS = true;
+            DrawFps = true;
 
             // test1: create two dummy GDI bitmaps and convert them to Direct2D device bitmap
 

@@ -44,7 +44,7 @@ namespace unvell.D2DLib.Examples.Demos
 
 			BackColor = System.Drawing.Color.FromArgb(50, 50, 50);
 			AnimationDraw = true;
-			ShowFPS = true;
+			DrawFps = true;
 		}
 
 		private D2DBitmap fullImage;
