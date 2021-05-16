@@ -29,7 +29,8 @@ namespace nud2dlib.Windows.Forms
 {
     public class D2DForm : Form
     {
-        private D2DDevice _device;
+        private D2DGraphics _graphics = null!;
+        private D2DDevice _device = null!;
         public D2DDevice Device => _device ??= D2DDevice.FromHwnd(Handle);
 
         private D2DBitmap? _backgroundImage = null;
@@ -46,13 +47,10 @@ namespace nud2dlib.Windows.Forms
             }
         }
 
-        private D2DGraphics _graphics;
-
         private FpsCounter _fpsCounter = new();
         public bool DrawFps { get; set; }
 
-
-        private Timer _timer = new Timer() { Interval = 10 };
+        private readonly Timer _timer = new() { Interval = 10 };
         public bool EscapeKeyToClose { get; set; } = true;
 
         private bool animationDraw;

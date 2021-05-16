@@ -34,7 +34,9 @@ namespace nud2dlib
         public D2DBitmap GetBitmap()
         {
             HANDLE bitmapHandle = D2D.GetBitmapRenderTargetBitmap(this.Handle);
-            return bitmapHandle == HANDLE.Zero ? null : new D2DBitmap(bitmapHandle);
+            return bitmapHandle == HANDLE.Zero
+                ? throw new Exception("Failed to create handle")
+                : new D2DBitmap(bitmapHandle);
         }
 
         public void Dispose() => D2D.DestroyBitmapRenderTarget(Handle);

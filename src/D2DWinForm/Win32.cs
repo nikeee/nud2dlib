@@ -1178,7 +1178,7 @@ namespace nud2dlib.Windows.Forms
             public byte lfQuality = 0;
             public byte lfPitchAndFamily = 0;
             [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 0x20)]
-            public string lfFaceName;
+            public string? lfFaceName;
         }
 
         [DllImport("gdi32.dll")]

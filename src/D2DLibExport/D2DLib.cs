@@ -286,7 +286,7 @@ namespace nud2dlib
         #region Pen
         [DllImport(DLL_NAME, EntryPoint = "CreatePenStroke", CallingConvention = CallingConvention.Cdecl)]
         public static extern HANDLE CreatePen(HANDLE ctx, D2DColor strokeColor, D2DDashStyle dashStyle = D2DDashStyle.Solid,
-            FLOAT[] dashes = null, UINT dashCount = 0, FLOAT dashOffset = 0.0f);
+            FLOAT[]? dashes = null, UINT dashCount = 0, FLOAT dashOffset = 0.0f);
 
         [DllImport(DLL_NAME, EntryPoint = "DestroyPenStroke", CallingConvention = CallingConvention.Cdecl)]
         public static extern void DestroyPen(HANDLE pen);

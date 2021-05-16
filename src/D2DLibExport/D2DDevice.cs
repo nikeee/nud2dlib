@@ -50,9 +50,9 @@ namespace nud2dlib
                 D2D.ResizeContext(Handle);
         }
 
-        public D2DPen CreatePen(D2DColor color, D2DDashStyle dashStyle = D2DDashStyle.Solid, float[] customDashes = null, float dashOffset = 0.0f)
+        public D2DPen CreatePen(D2DColor color, D2DDashStyle dashStyle = D2DDashStyle.Solid, float[]? customDashes = null, float dashOffset = 0.0f)
         {
-            HANDLE handle = D2D.CreatePen(
+            var handle = D2D.CreatePen(
                 Handle,
                 color,
                 dashStyle,
@@ -62,7 +62,7 @@ namespace nud2dlib
             );
 
             return handle == HANDLE.Zero
-                ? null
+                ? throw new Exception("Failed to create handle")
                 : new D2DPen(this, handle, color, dashStyle, customDashes, dashOffset);
         }
 
@@ -77,7 +77,7 @@ namespace nud2dlib
         {
             var handle = D2D.CreateSolidColorBrush(Handle, color);
             return handle == HANDLE.Zero
-                ? null
+                ? throw new Exception("Failed to create handle")
                 : new D2DSolidColorBrush(handle, color);
         }
 
@@ -160,7 +160,7 @@ namespace nud2dlib
         {
             var bitmapHandle = D2D.CreateBitmapFromBytes(Handle, buffer, offset, length);
             return bitmapHandle == HWND.Zero
-                ? null
+                ? throw new Exception("Failed to create handle")
                 : new D2DBitmap(bitmapHandle);
         }
 
@@ -170,7 +170,7 @@ namespace nud2dlib
         {
             var bitmapHandle = D2D.CreateBitmapFromFile(Handle, filepath);
             return bitmapHandle == HWND.Zero
-                ? null
+                ? throw new Exception("Failed to create handle")
                 : new D2DBitmap(bitmapHandle);
         }
 
@@ -178,7 +178,7 @@ namespace nud2dlib
         {
             var d2dbmp = D2D.CreateBitmapFromMemory(Handle, width, height, stride, buffer, offset, length);
             return d2dbmp == HANDLE.Zero
-                ? null
+                ? throw new Exception("Failed to create handle")
                 : new D2DBitmap(d2dbmp);
         }
 
@@ -191,7 +191,7 @@ namespace nud2dlib
         {
             HANDLE d2dbmp = D2D.CreateBitmapFromHBitmap(Handle, hbmp, useAlphaChannel);
             return d2dbmp == HANDLE.Zero
-                ? null
+                ? throw new Exception("Failed to create handle")
                 : new D2DBitmap(d2dbmp);
         }
 
@@ -214,7 +214,7 @@ namespace nud2dlib
             }
 
             return d2dbmp == HANDLE.Zero
-                ? null
+                ? throw new Exception("Failed to create handle")
                 : new D2DBitmap(d2dbmp);
         }
 
@@ -225,7 +225,7 @@ namespace nud2dlib
         {
             var bitmapRenderTargetHandle = D2D.CreateBitmapRenderTarget(Handle, size);
             return bitmapRenderTargetHandle == HANDLE.Zero
-                ? null
+                ? throw new Exception("Failed to create handle")
                 : new D2DBitmapGraphics(bitmapRenderTargetHandle);
         }
 

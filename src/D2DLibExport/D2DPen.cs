@@ -39,7 +39,7 @@ namespace nud2dlib
 
         public float DashOffset { get; private set; }
 
-        internal D2DPen(D2DDevice device, HANDLE handle, D2DColor color, D2DDashStyle dashStyle = D2DDashStyle.Solid, float[] customDashes = null, float dashOffset = 0f)
+        internal D2DPen(D2DDevice device, HANDLE handle, D2DColor color, D2DDashStyle dashStyle = D2DDashStyle.Solid, float[]? customDashes = null, float dashOffset = 0f)
             : base(handle)
         {
             Device = device;

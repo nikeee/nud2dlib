@@ -26,10 +26,10 @@ namespace nud2dlib.Windows.Forms
 {
     public class D2DControl : System.Windows.Forms.Control
     {
-        private D2DDevice _device;
+        private D2DDevice _device = null!;
         public D2DDevice Device => _device ??= D2DDevice.FromHwnd(Handle);
 
-        private D2DGraphics _graphics;
+        private D2DGraphics _graphics = null!;
 
         private FpsCounter _fpsCounter = new();
         public bool DrawFps { get; set; }

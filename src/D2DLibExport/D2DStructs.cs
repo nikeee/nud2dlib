@@ -64,7 +64,7 @@ namespace nud2dlib
             return c1.R != c2.R || c1.G != c2.G || c1.B != c2.B || c1.A != c2.A;
         }
 
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             if (!(obj is D2DColor)) return false;
             var c2 = (D2DColor)obj;

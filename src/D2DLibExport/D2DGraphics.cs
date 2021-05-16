@@ -179,23 +179,23 @@ namespace nud2dlib
 
         public void PopClip() => D2D.PopClip(Handle);
 
-        public D2DLayer PushLayer(D2DGeometry geometry = null)
+        public D2DLayer PushLayer(D2DGeometry? geometry = null)
         {
             // FIXME: resolve to not use magic number
-            D2DRect rectBounds = new D2DRect(-999999, -999999, 999999999, 999999999);
+            var rectBounds = new D2DRect(-999999, -999999, 999999999, 999999999);
 
             return PushLayer(rectBounds, geometry);
         }
 
-        public D2DLayer PushLayer(D2DRect rectBounds, D2DGeometry geometry = null)
+        public D2DLayer PushLayer(D2DRect rectBounds, D2DGeometry? geometry = null)
         {
             var layer = Device.CreateLayer();
             return PushLayer(layer, rectBounds, geometry);
         }
 
-        public D2DLayer PushLayer(D2DLayer layer, D2DRect rectBounds, D2DGeometry geometry = null)
+        public D2DLayer PushLayer(D2DLayer layer, D2DRect rectBounds, D2DGeometry? geometry = null)
         {
-            D2D.PushLayer(Handle, layer.Handle, ref rectBounds, geometry != null ? geometry.Handle : IntPtr.Zero);
+            D2D.PushLayer(Handle, layer.Handle, ref rectBounds, geometry?.Handle ?? IntPtr.Zero);
             return layer;
         }
 

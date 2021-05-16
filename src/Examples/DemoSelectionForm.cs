@@ -35,7 +35,7 @@ namespace nud2dlib.Examples
 		{
 			public Type Type { get; set; }
 			public string Name { get; set; }
-			public override string ToString() { return Name; }
+			public override string ToString() => Name;
 		}
 
 		public DemoSelectionForm()
@@ -67,7 +67,7 @@ namespace nud2dlib.Examples
 
 		private void loadItems()
 		{
-			var types = Assembly.GetAssembly(this.GetType()).GetTypes();
+			var types = Assembly.GetAssembly(GetType()).GetTypes();
 
 			foreach (var t in types)
 			{
@@ -105,7 +105,7 @@ namespace nud2dlib.Examples
 			lstExamples.SelectedIndexChanged += SelectItem;
 		}
 
-		private void SelectItem(object sender, EventArgs args)
+		private void SelectItem(object? sender, EventArgs args)
 		{
 			if (sender is ListBox listBox && listBox.SelectedItem != null)
 			{
@@ -114,7 +114,7 @@ namespace nud2dlib.Examples
 			}
 		}
 
-		private void ProcessKeyDown(object sender, KeyEventArgs e)
+		private void ProcessKeyDown(object? sender, KeyEventArgs e)
 		{
 			if (e.KeyCode == Keys.Escape)
 			{
