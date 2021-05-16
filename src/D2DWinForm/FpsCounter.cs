@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace unvell.D2DLib.Windows.Forms
+namespace nud2dlib.Windows.Forms
 {
     public class FpsCounter
     {

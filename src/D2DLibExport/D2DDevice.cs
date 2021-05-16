@@ -30,7 +30,7 @@ using HANDLE = System.IntPtr;
 using HWND = System.IntPtr;
 using UINT = System.UInt32;
 
-namespace unvell.D2DLib
+namespace nud2dlib
 {
     public class D2DDevice : IDisposable
     {

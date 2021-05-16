@@ -30,7 +30,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
-namespace unvell.D2DLib.Examples
+namespace nud2dlib.Examples
 {
 	public partial class MenuForm : Form
 	{

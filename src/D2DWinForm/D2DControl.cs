@@ -22,7 +22,7 @@
 * SOFTWARE.
 */
 
-namespace unvell.D2DLib.Windows.Forms
+namespace nud2dlib.Windows.Forms
 {
     public class D2DControl : System.Windows.Forms.Control
     {

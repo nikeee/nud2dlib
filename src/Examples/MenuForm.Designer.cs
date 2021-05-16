@@ -22,7 +22,7 @@
 * SOFTWARE.
 */
 
-namespace unvell.D2DLib.Examples
+namespace nud2dlib.Examples
 {
 	partial class MenuForm
 	{
@@ -53,9 +53,9 @@ namespace unvell.D2DLib.Examples
 		private void InitializeComponent()
 		{
 			this.SuspendLayout();
-			// 
+			//
 			// Form1
-			// 
+			//
 			this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(942, 662);

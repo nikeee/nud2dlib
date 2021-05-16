@@ -25,7 +25,7 @@
 using System;
 using HANDLE = System.IntPtr;
 
-namespace unvell.D2DLib
+namespace nud2dlib
 {
     public class D2DPen : D2DObject
     {

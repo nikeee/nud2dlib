@@ -1,7 +1,7 @@
 ﻿
 using HANDLE = System.IntPtr;
 
-namespace unvell.D2DLib
+namespace nud2dlib
 {
     public class D2DLayer : D2DObject
     {

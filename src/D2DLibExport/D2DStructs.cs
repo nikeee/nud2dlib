@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 
 using FLOAT = System.Single;
 
-namespace unvell.D2DLib
+namespace nud2dlib
 {
     #region Color
 

@@ -26,9 +26,9 @@ using System;
 using System.Drawing;
 using System.Numerics;
 using System.Windows.Forms;
-using unvell.D2DLib.Windows.Forms;
+using nud2dlib.Windows.Forms;
 
-namespace unvell.D2DLib.Examples
+namespace nud2dlib.Examples
 {
 	/// <summary>
 	/// Windows Form supports both GDI+ rendering and Direct2D hardware accelerated rendering.

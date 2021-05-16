@@ -26,9 +26,9 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
-using unvell.D2DLib.Windows.Forms;
+using nud2dlib.Windows.Forms;
 
-namespace unvell.D2DLib.Examples.SampleCode
+namespace nud2dlib.Examples.SampleCode
 {
 	public partial class LineCapStyle : ExampleForm
 	{

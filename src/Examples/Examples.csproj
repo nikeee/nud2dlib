@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0-windows</TargetFramework>
-    <RootNamespace>unvell.D2DLib.Examples</RootNamespace>
+    <RootNamespace>nud2dlib.Examples</RootNamespace>
     <OutputType>WinExe</OutputType>
     <UseWindowsForms>true</UseWindowsForms>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>

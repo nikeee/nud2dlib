@@ -29,9 +29,9 @@ using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Windows.Forms;
-using unvell.D2DLib.Windows.Forms;
+using nud2dlib.Windows.Forms;
 
-namespace unvell.D2DLib.Examples.Demos
+namespace nud2dlib.Examples.Demos
 {
 	class TransparentMemoryBitmapDraw : DemoForm
 	{

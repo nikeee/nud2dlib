@@ -48,7 +48,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
 
-namespace unvell.D2DLib.Windows.Forms
+namespace nud2dlib.Windows.Forms
 {
     public static class Win32
     {

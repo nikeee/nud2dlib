@@ -27,9 +27,9 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Numerics;
 using System.Windows.Forms;
-using unvell.D2DLib.Windows.Forms;
+using nud2dlib.Windows.Forms;
 
-namespace unvell.D2DLib.Examples.Demos
+namespace nud2dlib.Examples.Demos
 {
 	public partial class PieChart : DemoForm
 	{

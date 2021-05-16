@@ -22,7 +22,7 @@
 * SOFTWARE.
 */
 
-namespace unvell.D2DLib.Examples
+namespace nud2dlib.Examples
 {
 	partial class DemoSelectionForm
 	{
@@ -57,9 +57,9 @@ namespace unvell.D2DLib.Examples
 			this.lstExamples = new System.Windows.Forms.ListBox();
 			this.splitter1 = new System.Windows.Forms.Splitter();
 			this.SuspendLayout();
-			// 
+			//
 			// lstDemos
-			// 
+			//
 			this.lstDemos.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.lstDemos.FormattingEnabled = true;
 			this.lstDemos.ItemHeight = 25;
@@ -68,9 +68,9 @@ namespace unvell.D2DLib.Examples
 			this.lstDemos.Name = "lstDemos";
 			this.lstDemos.Size = new System.Drawing.Size(477, 591);
 			this.lstDemos.TabIndex = 0;
-			// 
+			//
 			// label1
-			// 
+			//
 			this.label1.Dock = System.Windows.Forms.DockStyle.Top;
 			this.label1.Location = new System.Drawing.Point(2, 2);
 			this.label1.Name = "label1";
@@ -78,9 +78,9 @@ namespace unvell.D2DLib.Examples
 			this.label1.TabIndex = 1;
 			this.label1.Text = "Choose an example...";
 			this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			// 
+			//
 			// lstExamples
-			// 
+			//
 			this.lstExamples.Dock = System.Windows.Forms.DockStyle.Right;
 			this.lstExamples.FormattingEnabled = true;
 			this.lstExamples.ItemHeight = 25;
@@ -88,18 +88,18 @@ namespace unvell.D2DLib.Examples
 			this.lstExamples.Name = "lstExamples";
 			this.lstExamples.Size = new System.Drawing.Size(452, 591);
 			this.lstExamples.TabIndex = 2;
-			// 
+			//
 			// splitter1
-			// 
+			//
 			this.splitter1.Dock = System.Windows.Forms.DockStyle.Right;
 			this.splitter1.Location = new System.Drawing.Point(479, 40);
 			this.splitter1.Name = "splitter1";
 			this.splitter1.Size = new System.Drawing.Size(5, 591);
 			this.splitter1.TabIndex = 3;
 			this.splitter1.TabStop = false;
-			// 
+			//
 			// DemoSelectionForm
-			// 
+			//
 			this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(938, 633);

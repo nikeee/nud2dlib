@@ -1,4 +1,4 @@
-﻿namespace unvell.D2DLib
+﻿namespace nud2dlib
 {
     public class MathFunctions
     {

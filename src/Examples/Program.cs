@@ -26,7 +26,7 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace unvell.D2DLib.Examples
+namespace nud2dlib.Examples
 {
 	static class Program
 	{

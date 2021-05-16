@@ -25,9 +25,9 @@
 using System;
 using System.Reflection;
 using System.Windows.Forms;
-using unvell.D2DLib.Windows.Forms;
+using nud2dlib.Windows.Forms;
 
-namespace unvell.D2DLib.Examples
+namespace nud2dlib.Examples
 {
 	public partial class DemoSelectionForm : Form
 	{

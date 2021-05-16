@@ -24,10 +24,10 @@
 
 using System;
 using System.Drawing;
-using unvell.D2DLib.Windows.Forms;
-using unvell.D2DLib.Examples.Properties;
+using nud2dlib.Windows.Forms;
+using nud2dlib.Examples.Properties;
 
-namespace unvell.D2DLib.Examples.SampleCode
+namespace nud2dlib.Examples.SampleCode
 {
 	public partial class MeasureAndDrawStringForm : ExampleForm
 	{

@@ -1,4 +1,4 @@
-![NuGet](https://img.shields.io/nuget/v/unvell.D2DLib.svg)
+![NuGet](https://img.shields.io/nuget/v/nud2dlib.svg)
 # d2dlib
 
 This library is a fork of [jingwood's d2dlib](https://github.com/jingwood/d2dlib).
@@ -19,13 +19,13 @@ By using the graphics context to draw anything on windows form, control or draw 
 ## Get binary from NuGet
 
 ```shell
-install-package unvell.d2dlib
+install-package nud2dlib
 ```
 
 Or install for x64 platform:
 
 ```shell
-install-package unvell.d2dlib-x64
+install-package nud2dlib-x64
 ```
 
 ## Notes
