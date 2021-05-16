@@ -1,16 +1,18 @@
 ![NuGet](https://img.shields.io/nuget/v/unvell.D2DLib.svg)
-
 # d2dlib
+
+This library is a fork of [jingwood's d2dlib](https://github.com/jingwood/d2dlib).
+Main difference: This library supports only .NET 5 (d2dlib supports .NET FW and .NET Standard 2.1) and uses the types from `System.Numerics.*` where appropriate (for example, `Vector2` and `Matrix3x2`). We do this because they are easier to work with and come with intrinsic JIT support (and thus, hardware acceleration).
 
 A .NET library for hardware-accelerated, high performance, immediate mode rendering via Direct2D.
 
 By using the graphics context to draw anything on windows form, control or draw in memory via Direct2D. The graphics interface is designed like the normal Windows Form graphics interface, it's easy-to-learn and user-friendly.
 
-| Project | Language | Description | Output DLL | 
-| --- | --- | --- | --- |
-| d2dlib | VC++ | Wrapper host-side library, calling Windows SDK and Direct2D API | d2dlib.dll | 
-| d2dlibexport | C# | Wrapper client-side library, export the interface provided from d2dlib | d2dlibexport.dll |
-| d2dwinform | C# | Provides the `D2DWinForm` and `D2DControl` classes that use Direct2D hardware-acceleration graphics context during rendering | d2dwinform.dll |
+| Project      | Language | Description                                                                                                                  | Output DLL       |
+|--------------|----------|------------------------------------------------------------------------------------------------------------------------------|------------------|
+| d2dlib       | VC++     | Wrapper host-side library, calling Windows SDK and Direct2D API                                                              | d2dlib.dll       |
+| d2dlibexport | C#       | Wrapper client-side library, export the interface provided from d2dlib                                                       | d2dlibexport.dll |
+| d2dwinform   | C#       | Provides the `D2DWinForm` and `D2DControl` classes that use Direct2D hardware-acceleration graphics context during rendering | d2dwinform.dll   |
 
 # Installation
 
