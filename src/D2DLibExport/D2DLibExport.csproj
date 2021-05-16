@@ -6,6 +6,7 @@
     <TargetFramework>net5.0-windows</TargetFramework>
     <RootNamespace>unvell.D2DLib</RootNamespace>
     <AssemblyName>d2dlibexport</AssemblyName>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
