@@ -22,7 +22,7 @@
 * SOFTWARE.
 */
 
-#include "stdafx.h"
+#include "common.hpp"
 #include "Bitmap.hpp"
 
 HANDLE CreateBitmapFromFile(HANDLE ctx,

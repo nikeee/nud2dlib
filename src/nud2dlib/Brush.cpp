@@ -22,7 +22,7 @@
 * SOFTWARE.
 */
 
-#include "stdafx.h"
+#include "common.hpp"
 #include "Brush.hpp"
 
 HANDLE CreateStrokeStyle(HANDLE ctx, FLOAT* dashes, UINT dashCount)

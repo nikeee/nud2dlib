@@ -22,7 +22,7 @@
 * SOFTWARE.
 */
 
-#include "stdafx.h"
+#include "common.hpp"
 #include "Effect.hpp"
 
 //#include "d2d1effects.hpp"

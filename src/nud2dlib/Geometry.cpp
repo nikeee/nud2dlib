@@ -22,7 +22,7 @@
 * SOFTWARE.
 */
 
-#include "stdafx.h"
+#include "common.hpp"
 #include "Geometry.hpp"
 #include "Brush.hpp"
 #include "Pen.hpp"
