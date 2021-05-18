@@ -172,19 +172,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Text Include="ReadMe.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="Bitmap.hpp" />
     <ClInclude Include="Brush.hpp" />
     <ClInclude Include="Geometry.hpp" />
     <ClInclude Include="Context.hpp" />
     <ClInclude Include="Pen.hpp" />
-    <ClInclude Include="resource1.hpp" />
     <ClInclude Include="Simple.hpp" />
     <ClInclude Include="Text.hpp" />
     <ClInclude Include="Effect.hpp" />
-    <ClInclude Include="Resource.hpp" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.hpp" />
     <ClInclude Include="Transform.hpp" />
@@ -220,9 +215,6 @@
     </ClCompile>
     <ClCompile Include="Test.cpp" />
     <ClCompile Include="Transform.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="Resource.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
