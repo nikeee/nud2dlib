@@ -84,6 +84,7 @@ D2DLIB_API HANDLE CreateTextLayout(HANDLE ctx, LPCWSTR text, LPCWSTR fontName, F
 		);
 
 		if (SUCCEEDED(hr) && textLayout != NULL) {
+			SafeRelease(&textFormat);
 			return (HANDLE)textLayout;
 		}
 	}
