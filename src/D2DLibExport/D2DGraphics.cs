@@ -1,28 +1,4 @@
-﻿/*
- * MIT License
- *
- * Copyright (c) 2009-2021 Jingwood, unvell.com. All right reserved.
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
- */
-
-using System;
+﻿using System;
 using System.Numerics;
 using System.Runtime.InteropServices;
 using FLOAT = System.Single;
@@ -300,8 +276,7 @@ namespace nud2dlib
 
         public void DrawTextCenter(string text, D2DColor color, string fontName, float fontSize, D2DRect rect)
         {
-            DrawText(text, color, fontName, fontSize, rect,
-                DWriteTextAlignment.Center, DWriteParagraphAlignment.Center);
+            DrawText(text, color, fontName, fontSize, rect, DWriteTextAlignment.Center, DWriteParagraphAlignment.Center);
         }
 
         public void DrawText(string text, D2DColor color, string fontName, float fontSize, FLOAT x, FLOAT y,
@@ -309,14 +284,41 @@ namespace nud2dlib
           DWriteParagraphAlignment valign = DWriteParagraphAlignment.Near)
         {
             D2DRect rect = new D2DRect(x, y, 9999999, 9999999);  // FIXME: avoid magic number
-            D2D.DrawText(Handle, text, color, fontName, fontSize, ref rect, halign, valign);
+            D2D.DrawText(Handle, text, color, fontName, fontSize, rect,
+                D2DFontWeight.Normal,
+                D2DFontStyle.Normal,
+                D2DFontStretch.Normal,
+                halign, valign);
         }
 
         public void DrawText(string text, D2DColor color, string fontName, float fontSize, D2DRect rect,
                 DWriteTextAlignment halign = DWriteTextAlignment.Leading,
                 DWriteParagraphAlignment valign = DWriteParagraphAlignment.Near)
         {
-            D2D.DrawText(Handle, text, color, fontName, fontSize, ref rect, halign, valign);
+            D2D.DrawText(this.Handle, text, color, fontName, fontSize, rect,
+                D2DFontWeight.Normal,
+                D2DFontStyle.Normal,
+                D2DFontStretch.Normal,
+                halign, valign);
+        }
+
+        public void DrawText(string text, D2DColor color, string fontName, float fontSize,
+        D2DFontWeight fontWeight, D2DRect rect,
+        DWriteTextAlignment halign = DWriteTextAlignment.Leading,
+        DWriteParagraphAlignment valign = DWriteParagraphAlignment.Near)
+        {
+            D2D.DrawText(this.Handle, text, color, fontName, fontSize, rect,
+                fontWeight, D2DFontStyle.Normal, D2DFontStretch.Normal, halign, valign);
+        }
+
+        public void DrawText(string text, D2DColor color, string fontName, float fontSize,
+            D2DFontWeight fontWeight, D2DFontStyle fontStyle, D2DFontStretch fontStretch,
+            D2DRect rect,
+            DWriteTextAlignment halign = DWriteTextAlignment.Leading,
+            DWriteParagraphAlignment valign = DWriteParagraphAlignment.Near)
+        {
+            D2D.DrawText(this.Handle, text, color, fontName, fontSize, rect,
+                fontWeight, fontStyle, fontStretch, halign, valign);
         }
 
         public D2DSize MeasureText(string text, string fontName, float fontSize, D2DSize placeSize)

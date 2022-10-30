@@ -179,6 +179,7 @@
     <ClInclude Include="Context.hpp" />
     <ClInclude Include="Pen.hpp" />
     <ClInclude Include="Simple.hpp" />
+    <ClInclude Include="Style.h" />
     <ClInclude Include="Text.hpp" />
     <ClInclude Include="Effect.hpp" />
     <ClInclude Include="common.hpp" />
@@ -192,6 +193,7 @@
     <ClCompile Include="Context.cpp" />
     <ClCompile Include="Pen.cpp" />
     <ClCompile Include="Simple.cpp" />
+    <ClCompile Include="Style.cpp" />
     <ClCompile Include="Text.cpp" />
     <ClCompile Include="dllmain.cpp">
       <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</CompileAsManaged>

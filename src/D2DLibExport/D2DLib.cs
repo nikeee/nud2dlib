@@ -230,14 +230,24 @@ namespace nud2dlib
 
         [SuppressGCTransition]
         [DllImport(DLL_NAME, EntryPoint = "DrawString", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void DrawText([In] HANDLE context, [In] string text, [In] D2DColor color,
-            [In] string fontName, [In] FLOAT fontSize, [In] ref D2DRect rect,
+        public static extern void DrawText(
+            [In] HANDLE context, [In] string text, [In] D2DColor color,
+            [In] string fontName, [In] FLOAT fontSize, [In] D2DRect rect,
+            [In] D2DFontWeight fontWeight = D2DFontWeight.Normal,
+            [In] D2DFontStyle fontStyle = D2DFontStyle.Normal,
+            [In] D2DFontStretch fontStretch = D2DFontStretch.Normal,
             [In] DWriteTextAlignment halign = DWriteTextAlignment.Leading,
             [In] DWriteParagraphAlignment valign = DWriteParagraphAlignment.Near);
 
         [SuppressGCTransition]
         [DllImport(DLL_NAME, EntryPoint = "MeasureText", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void MeasureText([In] HANDLE ctx, [In] string text, [In] string fontName, [In] FLOAT fontSize, ref D2DSize size);
+        public static extern void MeasureText(
+            [In] FLOAT fontSize, ref D2DSize size,
+            [In] D2DFontWeight fontWeight = D2DFontWeight.Normal,
+            [In] D2DFontStyle fontStyle = D2DFontStyle.Normal,
+            [In] D2DFontStretch fontStretch = D2DFontStretch.Normal,
+            [In] DWriteTextAlignment halign = DWriteTextAlignment.Leading,
+            [In] DWriteParagraphAlignment valign = DWriteParagraphAlignment.Near);
 
         #endregion // Text
 
@@ -347,6 +357,14 @@ namespace nud2dlib
         public static extern void GetGeometryTransformedBounds(HANDLE pathCtx, ref Matrix3x2 mat3x2, ref D2DRect rect);
 
         #endregion // Geometry
+
+        #region Style
+
+        [DllImport(DLL_NAME, EntryPoint = "CreateStrokeStyle", CallingConvention = CallingConvention.Cdecl)]
+        public static extern HANDLE CreateStrokeStyle(HANDLE ctx, FLOAT[] dashes = null, UINT dashCount = 0, FLOAT dashOffset = 0.0f,
+                D2DCapStyle startCap = D2DCapStyle.Flat, D2DCapStyle endCap = D2DCapStyle.Flat);
+
+        #endregion Style
 
         #region Pen
         [SuppressGCTransition]

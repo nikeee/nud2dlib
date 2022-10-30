@@ -3,7 +3,7 @@
   <Import Project="..\NativeLibraries.props" />
 
   <PropertyGroup>
-    <TargetFramework>net5.0-windows</TargetFramework>
+    <TargetFramework>net6.0-windows</TargetFramework>
     <RootNamespace>nud2dlib</RootNamespace>
     <AssemblyName>d2dlibexport</AssemblyName>
   </PropertyGroup>

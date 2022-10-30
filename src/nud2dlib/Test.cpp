@@ -66,7 +66,7 @@ void Test(HANDLE handle)
 	ID2D1SolidColorBrush* brush = NULL;
 	rt->CreateSolidColorBrush(color, &brush);
 
-	const TCHAR* str = TEXT("汉字测试");
+	const TCHAR* str = TEXT("漢字テスト");
 
 	rt->BeginDraw();
 	rt->Clear(D2D1::ColorF(D2D1::ColorF::White));
